@@ -1,22 +1,22 @@
-import aubio
+#import aubio
+
 import numpy as np
 
-class BeatDetector:
-    def __init__(self, src, stateMachine):
-        self.src = src
-        self.stateMachine = stateMachine
+# first, we need to import our essentia module. It is aptly named 'essentia'!
+import essentia
 
-    def detect(src)
-        self.src = src
-        samplerate = 0  # use original source samplerate
-        hop_size = 256  # number of frames to read in one block
-        total_frames = 0
+# as there are 2 operating modes in essentia which have the same algorithms,
+# these latter are dispatched into 2 submodules:
+#import essentia.standard
+#import essentia.streaming
 
-        while True:
-            samples, read = self.src()  # read hop_size new samples from source
-            total_frames += read   # increment total number of frames
-            if read < hop_size:    # end of file reached
-                break
+# we start by instantiating the audio loader:
+loader = essentia.standard.MonoLoader(filename='samples/dubstep.wav')
 
-        fmt_string = "read {:d} frames at {:d}Hz from {:s}"
-        print(fmt_string.format(total_frames, src.samplerate, src.uri))
+# and then we actually perform the loading:
+audio = loader()
+
+# This is how the audio we want to process sounds like
+import IPython
+IPython.display.Audio('samples/dubstep.wav')
+
