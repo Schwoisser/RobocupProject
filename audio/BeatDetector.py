@@ -1,22 +1,42 @@
-#import aubio
-
+from __future__ import print_function
 import numpy as np
+import pyaudio
+import wave
+import sys
+import librosa
+import IPython.display as ipd 
 
-# first, we need to import our essentia module. It is aptly named 'essentia'!
-import essentia
+CHUNK = 1024
 
-# as there are 2 operating modes in essentia which have the same algorithms,
-# these latter are dispatched into 2 submodules:
-#import essentia.standard
-#import essentia.streaming
+wf = wave.open('c:\\projects\\RobocupProject\\audio\\test.wav','rb')
+p = pyaudio.PyAudio()
+tempo=[]
 
-# we start by instantiating the audio loader:
-loader = essentia.standard.MonoLoader(filename='samples/dubstep.wav')
+data = wf.readframes(CHUNK)
+y, sr = librosa.load('c:\\projects\\RobocupProject\\audio\\test.wav')
+ipd.Audio(y, rate=sr)
+tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr,hop_length=300,units='time')
+clicks = librosa.clicks(beat_frames, sr=sr, length=len(y))
+ipd.Audio(y + clicks, rate=sr)
+    
+print('Estimated tempo: {:.2f} beats per minute'.format(tempo))
 
-# and then we actually perform the loading:
-audio = loader()
 
-# This is how the audio we want to process sounds like
-import IPython
-IPython.display.Audio('samples/dubstep.wav')
+    # 4. Convert the frame indices of beat events into timestamps
+beat_times = librosa.frames_to_time(beat_frames, sr=sr)
+stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
+                channels=wf.getnchannels(),
+                rate=wf.getframerate(),
+                output=True)
+
+while data != '':
+    stream.write(data)
+    data = wf.readframes(CHUNK)
+    
+
+
+stream.stop_stream()
+stream.close()
+
+p.terminate()
 
