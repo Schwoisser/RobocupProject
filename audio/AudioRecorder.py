@@ -10,9 +10,12 @@
 # Author: Alexandre Mazel
 ###########################################################
 
-NAO_IP = "10.0.252.126" # Romeo on table
+#NAO_IP = "10.0.252.126" # Romeo on table
 #~ NAO_IP = "10.0.253.99" # Nao Alex Blue
 
+NAO_IP = 'nao5.local'
+#NAO_IP = '10.0.7.106'
+PORT = 9559
 
 from optparse import OptionParser
 import naoqi
@@ -78,8 +81,8 @@ class SoundReceiverModule(naoqi.ALModule):
         aSoundDataInterlaced = np.fromstring( str(buffer), dtype=np.int16 );
         #~ print( "len data: %s " % len( aSoundDataInterlaced ) );
         #~ print( "data interlaced: " ),
-        #~ for i in range( 8 ):
-            #~ print( "%d, " % (aSoundDataInterlaced[i]) ),
+        for i in range( 8 ):
+            print( "%d, " % (aSoundDataInterlaced[i]) ),
         #~ print( "" );
         aSoundData = np.reshape( aSoundDataInterlaced, (nbOfChannels, nbrOfSamplesByChannel), 'F' );
         #~ print( "len data: %s " % len( aSoundData ) );
@@ -103,7 +106,7 @@ class SoundReceiverModule(naoqi.ALModule):
             bSaveAll = True;
             # save to file
             if( self.outfile == None ):
-                strFilenameOut = "/out.raw";
+                strFilenameOut = "/home/anderson/Documents/projects/RobocupProject/audio/out.raw";
                 print( "INF: Writing sound to '%s'" % strFilenameOut );
                 self.outfile = open( strFilenameOut, "wb" );
                 if( bSaveAll ):
@@ -148,7 +151,7 @@ def main():
         type="int")
     parser.set_defaults(
         pip=NAO_IP,
-        pport=9559)
+        pport=PORT)
 
     (opts, args_) = parser.parse_args()
     pip   = opts.pip
@@ -157,9 +160,9 @@ def main():
     # We need this broker to be able to construct
     # NAOqi modules and subscribe to other modules
     # The broker must stay alive until the program exists
-    myBroker = naoqi.ALBroker("myBroker",
+    myBroker = naoqi.ALBroker("myBroker2",
        "0.0.0.0",   # listen to anyone
-       0,           # find a free port and use it
+       20010,           # find a free port and use it
        pip,         # parent broker IP
        pport)       # parent broker port
 
@@ -170,16 +173,18 @@ def main():
     global SoundReceiver
     SoundReceiver = SoundReceiverModule("SoundReceiver", pip)
     SoundReceiver.start()
-
+    secs = 0
     try:
-        while True:
+        while secs < 5:
+            secs = secs + 1
             time.sleep(1)
     except KeyboardInterrupt:
         print
         print "Interrupted by user, shutting down"
         myBroker.shutdown()
         sys.exit(0)
-
+    myBroker.shutdown()
+    SoundReceiver.stop()
 
 
 if __name__ == "__main__":
