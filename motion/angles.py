@@ -28,6 +28,15 @@ def StiffnessOffHand(proxy):
     pTimeLists = 0.5
 
     proxy.stiffnessInterpolation(pNames, pStiffnessLists, pTimeLists, True)
+    
+
+def headMove():
+    names = ["HeadYaw", "HeadPitch"]
+    times = [[0.9], [0.9]]
+
+    for i in range(3):
+        motionProxy.angleInterpolation(names, [0.0, 0.5], times, True)
+        motionProxy.angleInterpolation(names, [0.0, -0.5], times, True)
 
 
 def choreography_1():
@@ -57,13 +66,6 @@ def choreography_1():
     angleList2 = [1.489, 1.222, 0, -1.342]
     times = 0.6
     motionProxy.angleInterpolation(effector, angleList2, times, True)
-def headMove():
-    names = ["HeadYaw", "HeadPitch"]
-    times = [[0.9], [0.9]]
-
-    for i in range(3):
-        motionProxy.angleInterpolation(names, [0.0, 0.5], times, True)
-        motionProxy.angleInterpolation(names, [0.0, -0.5], times, True)
 
 
 def choreography_2():
