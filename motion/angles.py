@@ -30,6 +30,33 @@ def StiffnessOffHand(proxy):
     proxy.stiffnessInterpolation(pNames, pStiffnessLists, pTimeLists, True)
 
 
+def choreography_1():
+    effector_names = ["HeadYaw", "HeadPitch"]
+    times = [[0.9], [0.9]]
+
+    for i in range(1):
+        motionProxy.post.angleInterpolation(effector_names, [0.0, 0.5], times, True)
+        motionProxy.post.angleInterpolation(effector_names, [0.0, -0.5], times, True)
+
+    effector = ["RArm"]
+    angleList1 = [1.385, 0, -1.454, 0]
+    times = 0.6
+    motionProxy.angleInterpolation(effector, angleList1, times, True)
+
+    effector = ["LArm"]
+    angleList1 = [1.385, 0, 1.454, 0]
+    times = 0.6
+    motionProxy.angleInterpolation(effector, angleList1, times, True)
+
+    effector = ["RArm"]
+    angleList2 = [1.489, -1.222, 0, 1.342]
+    times = 0.6
+    motionProxy.angleInterpolation(effector, angleList2, times, True)
+
+    effector = ["LArm"]
+    angleList2 = [1.489, 1.222, 0, -1.342]
+    times = 0.6
+    motionProxy.angleInterpolation(effector, angleList2, times, True)
 def headMove():
     names = ["HeadYaw", "HeadPitch"]
     times = [[0.9], [0.9]]
@@ -37,38 +64,6 @@ def headMove():
     for i in range(3):
         motionProxy.angleInterpolation(names, [0.0, 0.5], times, True)
         motionProxy.angleInterpolation(names, [0.0, -0.5], times, True)
-
-
-def rigth_arm():
-    effector = ["RArm"]
-    angleList1 = [1.385, 0, -1.454, 0]
-    times = 1.0
-    motionProxy.angleInterpolation(effector, angleList1, times, True)
-    effector = ["RArm"]
-    angleList2 = [1.489, -1.222, 0, 1.342]
-    times = 1.0
-    motionProxy.angleInterpolation(effector, angleList2, times, True)
-
-
-def left_arm1():
-    effector = ["LArm"]
-    angleList1 = [-1.553, 0, 1.633, 0]
-    times = 1.0
-    motionProxy.angleInterpolation(effector, angleList1, times, True)
-    effector = ["LArm"]
-    angleList2 = [-1.445, 0, 1.633, 0]
-    times = 1.0
-    motionProxy.angleInterpolation(effector, angleList2, times, True)
-
-def left_arm():
-    effector = ["LArm"]
-    angleList1 = [-1.615344047546386719e+00,-2.458596229553222656e-02, 1.581512093544006348e+00, -3.490658476948738098e-02]
-    times = 1.0
-    motionProxy.angleInterpolation(effector, angleList1, times, True)
-    effector = ["LArm"]
-    angleList2 = [-1.621479988098144531e+00, 9.571740627288818359e-01, 1.509414076805114746e+00, -3.490658476948738098e-02]
-    times = 1.0
-    motionProxy.angleInterpolation(effector, angleList2, times, True)
 
 
 def choreography_2():
@@ -122,35 +117,6 @@ def choreography_2():
         motionProxy.angleInterpolation(names, angleList2, times, isAbsolute)
 
 
-def choreography_1():
-    effector_names = ["HeadYaw", "HeadPitch"]
-    times = [[0.9], [0.9]]
-
-    for i in range(1):
-        motionProxy.post.angleInterpolation(effector_names, [0.0, 0.5], times, True)
-        motionProxy.post.angleInterpolation(effector_names, [0.0, -0.5], times, True)
-
-    effector = ["RArm"]
-    angleList1 = [1.385, 0, -1.454, 0]
-    times = 0.6
-    motionProxy.angleInterpolation(effector, angleList1, times, True)
-
-    effector = ["LArm"]
-    angleList1 = [1.385, 0, 1.454, 0]
-    times = 0.6
-    motionProxy.angleInterpolation(effector, angleList1, times, True)
-
-    effector = ["RArm"]
-    angleList2 = [1.489, -1.222, 0, 1.342]
-    times = 0.6
-    motionProxy.angleInterpolation(effector, angleList2, times, True)
-
-    effector = ["LArm"]
-    angleList2 = [1.489, 1.222, 0, -1.342]
-    times = 0.6
-    motionProxy.angleInterpolation(effector, angleList2, times, True)
-
-
 def main(robotIP):
     # Init proxies.
     try:
@@ -171,8 +137,6 @@ def main(robotIP):
 
     posture.goToPosture("Stand", 0.5)
     choreography_2()
-    # left_arm()
-    # right_arm()
     posture.goToPosture("Stand", 0.5)
     ttsProxy.say("Thank you")
     motionProxy.rest()
