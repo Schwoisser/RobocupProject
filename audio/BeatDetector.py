@@ -1,22 +1,42 @@
-import aubio
+from __future__ import print_function
 import numpy as np
+import pyaudio
+import wave
+import sys
+import librosa
+import IPython.display as ipd 
 
-class BeatDetector:
-    def __init__(self, src, stateMachine):
-        self.src = src
-        self.stateMachine = stateMachine
+CHUNK = 1024
 
-    def detect(src)
-        self.src = src
-        samplerate = 0  # use original source samplerate
-        hop_size = 256  # number of frames to read in one block
-        total_frames = 0
+wf = wave.open('c:\\projects\\RobocupProject\\audio\\test.wav','rb')
+p = pyaudio.PyAudio()
+tempo=[]
 
-        while True:
-            samples, read = self.src()  # read hop_size new samples from source
-            total_frames += read   # increment total number of frames
-            if read < hop_size:    # end of file reached
-                break
+data = wf.readframes(CHUNK)
+y, sr = librosa.load('c:\\projects\\RobocupProject\\audio\\test.wav')
+ipd.Audio(y, rate=sr)
+tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr,hop_length=300,units='time')
+clicks = librosa.clicks(beat_frames, sr=sr, length=len(y))
+ipd.Audio(y + clicks, rate=sr)
+    
+print('Estimated tempo: {:.2f} beats per minute'.format(tempo))
 
-        fmt_string = "read {:d} frames at {:d}Hz from {:s}"
-        print(fmt_string.format(total_frames, src.samplerate, src.uri))
+
+    # 4. Convert the frame indices of beat events into timestamps
+beat_times = librosa.frames_to_time(beat_frames, sr=sr)
+stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
+                channels=wf.getnchannels(),
+                rate=wf.getframerate(),
+                output=True)
+
+while data != '':
+    stream.write(data)
+    data = wf.readframes(CHUNK)
+    
+
+
+stream.stop_stream()
+stream.close()
+
+p.terminate()
+
