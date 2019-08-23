@@ -71,7 +71,7 @@ def left_arm():
     motionProxy.angleInterpolation(effector, angleList2, times, True)
 
 
-def leg_move():
+def choreography_2():
     effector = ["RArm"]
     times = 1.0
     angleList1 = [-1.615344047546386719e+00, 2.458596229553222656e-02, -1.581512093544006348e+00,
@@ -92,7 +92,8 @@ def leg_move():
         motionProxy.angleInterpolation(names, angleList1, times, isAbsolute)
         motionProxy.angleInterpolation(names, angleList2, times, isAbsolute)
 
-    names = ["RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll", "RHipRoll", "LHipRoll", "LKneePitch", "LAnklePitch", "LHipPitch", "RKneePitch", "RAnklePitch", "RHipPitch"]
+    names = ["RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll", "RHipRoll", "LHipRoll", "LKneePitch",
+             "LAnklePitch", "LHipPitch", "RKneePitch", "RAnklePitch", "RHipPitch"]
     angleLists = [[1.45], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0],[0.0], [0.0], [0.0]]
     times = [[1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0],[1.0], [1.0], [1.0], [1.0]]
     isAbsolute = True
@@ -121,7 +122,14 @@ def leg_move():
         motionProxy.angleInterpolation(names, angleList2, times, isAbsolute)
 
 
-def arm_move():
+def choreography_1():
+    effector_names = ["HeadYaw", "HeadPitch"]
+    times = [[0.9], [0.9]]
+
+    for i in range(1):
+        motionProxy.post.angleInterpolation(effector_names, [0.0, 0.5], times, True)
+        motionProxy.post.angleInterpolation(effector_names, [0.0, -0.5], times, True)
+
     effector = ["RArm"]
     angleList1 = [1.385, 0, -1.454, 0]
     times = 0.6
@@ -142,6 +150,7 @@ def arm_move():
     times = 0.6
     motionProxy.angleInterpolation(effector, angleList2, times, True)
 
+
 def main(robotIP):
     # Init proxies.
     try:
@@ -157,18 +166,11 @@ def main(robotIP):
     StiffnessOn(motionProxy)
     posture.goToPosture("Stand", 0.5)
 
-    names = ["HeadYaw", "HeadPitch"]
-    times = [[0.9], [0.9]]
-
     for i in range(1):
-        motionProxy.post.angleInterpolation(names, [0.0, 0.5], times, True)
-        motionProxy.post.angleInterpolation(names, [0.0, -0.5], times, True)
-
-    for i in range(1):
-        arm_move()
+        choreography_1()
 
     posture.goToPosture("Stand", 0.5)
-    leg_move()
+    choreography_2()
     # left_arm()
     # right_arm()
     posture.goToPosture("Stand", 0.5)
