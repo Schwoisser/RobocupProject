@@ -9,7 +9,7 @@ robotIP = "nao2.local"
 
 motionProxy = ALProxy("ALMotion", robotIP, 9559)
 posture = ALProxy("ALRobotPosture", robotIP, 9559)
-
+ttsProxy = ALProxy("ALTextToSpeech", robotIP, 9559)
 
 def StiffnessOn(proxy):
     # We use the "Body" name to signify the collection of all joints
@@ -50,82 +50,97 @@ def rigth_arm():
     motionProxy.angleInterpolation(effector, angleList2, times, True)
 
 
-def left_arm():
+def left_arm1():
     effector = ["LArm"]
-    angleList1 = [1.374, 0, 1.567, 0]
+    angleList1 = [-1.553, 0, 1.633, 0]
     times = 1.0
     motionProxy.angleInterpolation(effector, angleList1, times, True)
     effector = ["LArm"]
-    angleList2 = [1.155, 1.210, 0, -1.178]
+    angleList2 = [-1.445, 0, 1.633, 0]
     times = 1.0
     motionProxy.angleInterpolation(effector, angleList2, times, True)
 
-def dance1():
+def left_arm():
+    effector = ["LArm"]
+    angleList1 = [-1.615344047546386719e+00,-2.458596229553222656e-02, 1.581512093544006348e+00, -3.490658476948738098e-02]
+    times = 1.0
+    motionProxy.angleInterpolation(effector, angleList1, times, True)
+    effector = ["LArm"]
+    angleList2 = [-1.621479988098144531e+00, 9.571740627288818359e-01, 1.509414076805114746e+00, -3.490658476948738098e-02]
+    times = 1.0
+    motionProxy.angleInterpolation(effector, angleList2, times, True)
 
-    names = ["RHipRoll","LHipRoll", "LKneePitch"
-                  , "LAnklePitch", "LHipPitch"]
-    angleLists = [[0.2], [0.2], [1], [-0.5], [-0.5]]
+
+def leg_move():
+    effector = ["RArm"]
+    times = 1.0
+    angleList1 = [-1.615344047546386719e+00, 2.458596229553222656e-02, -1.581512093544006348e+00,
+                  -3.490658476948738098e-02]
+
+    angleList2 = [-1.621479988098144531e+00, -9.571740627288818359e-01, -1.509414076805114746e+00,
+                  -3.490658476948738098e-02]
+    for i in range(3):
+        motionProxy.post.angleInterpolation(effector, angleList1, times, True)
+        motionProxy.post.angleInterpolation(effector, angleList2, times, True)
+
+    names = ["RHipRoll","LHipRoll", "LKneePitch", "LAnklePitch", "LHipPitch"]
+    angleList1 = [[0.2], [0.2], [1], [-0.5], [-0.5]]
+    angleList2 = [[0.0], [0.0], [0.0], [0.0], [0.0]]
     times = [[1.0], [1.0], [1.0], [1.0], [1.0]]
     isAbsolute = True
+    for i in range(3):
+        motionProxy.angleInterpolation(names, angleList1, times, isAbsolute)
+        motionProxy.angleInterpolation(names, angleList2, times, isAbsolute)
+
+    names = ["RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll", "RHipRoll", "LHipRoll", "LKneePitch", "LAnklePitch", "LHipPitch", "RKneePitch", "RAnklePitch", "RHipPitch"]
+    angleLists = [[1.45], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0],[0.0], [0.0], [0.0]]
+    times = [[1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0], [1.0],[1.0], [1.0], [1.0], [1.0]]
+    isAbsolute = True
     motionProxy.angleInterpolation(names, angleLists, times, isAbsolute)
-    posture.goToPosture("Stand", 0.5)
-    names = ["LHipRoll", "RHipRoll", "RKneePitch"
-        , "RAnklePitch", "RHipPitch"]
-    angleLists = [[0.2], [0.2], [1], [-0.5], [-0.5]]
+
+    effector = ["LArm"]
+    times = 1.0
+    angleList1 = [-1.615344047546386719e+00, -2.458596229553222656e-02, 1.581512093544006348e+00,
+                  -3.490658476948738098e-02]
+
+    angleList2 = [-1.621479988098144531e+00, 9.571740627288818359e-01, 1.509414076805114746e+00,
+                  -3.490658476948738098e-02]
+    for i in range(3):
+        motionProxy.post.angleInterpolation(effector, angleList1, times, True)
+        motionProxy.post.angleInterpolation(effector, angleList2, times, True)
+
+    names = ["LHipRoll", "RHipRoll", "RKneePitch", "RAnklePitch", "RHipPitch"]
     times = [[1.0], [1.0], [1.0], [1.0], [1.0]]
     isAbsolute = True
-    motionProxy.angleInterpolation(names, angleLists, times, isAbsolute)
+    angleList1 = [[-0.2], [-0.2], [1], [-0.5], [-0.5]]
 
+    angleList2 = [[0.0], [0.0], [0.0], [0.0], [0.0]]
 
-def naeNae(motion_proxy):
-    motion_proxy.openHand("RHand")
+    for i in range(3):
+        motionProxy.angleInterpolation(names, angleList1, times, isAbsolute)
+        motionProxy.angleInterpolation(names, angleList2, times, isAbsolute)
 
-    names = ["RKneePitch", "LKneePitch","LHipPitch", "RHipPitch",
-            "RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll",
-            "RWristYaw"]
-    angleLists = [25*almath.TO_RAD, 25*almath.TO_RAD, -32*almath.TO_RAD, -32*almath.TO_RAD,
-                  -100*almath.TO_RAD, -76*almath.TO_RAD, 20*almath.TO_RAD, 60*almath.TO_RAD,
-                  10*almath.TO_RAD]
-
-    timeLists = 1.0
-    isAbsolute = True
-
-    motion_proxy.angleInterpolation(names, angleLists, timeLists, isAbsolute)
-    motion_proxy.waitUntilMoveIsFinished()
-
-    names2 = ["LHipRoll", "RHipRoll", "RElbowRoll"]
-    angleLists2 = [-10 * almath.TO_RAD, -10 * almath.TO_RAD, 88.5 * almath.TO_RAD]
-    timeLists = 0.6
-    motion_proxy.angleInterpolation(names2, angleLists2, timeLists, isAbsolute)
-
-    names3 = ["LHipRoll", "RHipRoll", "RElbowRoll"]
-    angleLists3 = [10 * almath.TO_RAD, 10 * almath.TO_RAD, 30 * almath.TO_RAD]
-    timeLists = 0.6
-    motion_proxy.angleInterpolation(names3, angleLists3, timeLists, isAbsolute)
 
 def arm_move():
-    effectorList = ["RArm", "LArm"]
+    effector = ["RArm"]
+    angleList1 = [1.385, 0, -1.454, 0]
+    times = 0.6
+    motionProxy.angleInterpolation(effector, angleList1, times, True)
 
-    pathList = [
-        [
-            [1.385, 0.0, -1.454, 0.0],  # target 1 for "LArm"
-            [1.489, -1.222, 0.0, 1.342]  # target 2 for "LArm"
-        ],
-        [
-            [1.374, 0.0, 1.567, 0.0],  # target 1 for "RArm"
-            [1.155, 1.210, 0.0, -1.178]  # target 2 for "RArm"
-        ]
-    ]
+    effector = ["LArm"]
+    angleList1 = [1.385, 0, 1.454, 0]
+    times = 0.6
+    motionProxy.angleInterpolation(effector, angleList1, times, True)
 
-    coef = 1.0
-    timesList = [[coef * (i + 1) for i in range(5)],  # for "LArm" in seconds
-                 [coef * (i + 1) for i in range(6)]]  # for "RArm" in seconds
+    effector = ["RArm"]
+    angleList2 = [1.489, -1.222, 0, 1.342]
+    times = 0.6
+    motionProxy.angleInterpolation(effector, angleList2, times, True)
 
-    isAbsolute = False
-
-    # called cartesian interpolation
-    motionProxy.angleInterpolation(effectorList, pathList, timesList, isAbsolute)
-
+    effector = ["LArm"]
+    angleList2 = [1.489, 1.222, 0, -1.342]
+    times = 0.6
+    motionProxy.angleInterpolation(effector, angleList2, times, True)
 
 def main(robotIP):
     # Init proxies.
@@ -142,12 +157,24 @@ def main(robotIP):
     StiffnessOn(motionProxy)
     posture.goToPosture("Stand", 0.5)
 
-    # headMove()
-    naeNae(motionProxy)
-    # dance1()
-    # left_arm()
-    rigth_arm()
+    names = ["HeadYaw", "HeadPitch"]
+    times = [[0.9], [0.9]]
+
+    for i in range(1):
+        motionProxy.post.angleInterpolation(names, [0.0, 0.5], times, True)
+        motionProxy.post.angleInterpolation(names, [0.0, -0.5], times, True)
+
+    for i in range(1):
+        arm_move()
+
     posture.goToPosture("Stand", 0.5)
+    leg_move()
+    # left_arm()
+    # right_arm()
+    posture.goToPosture("Stand", 0.5)
+    ttsProxy.say("Thank you")
+    motionProxy.rest()
+
     time.sleep(5)
 
 
