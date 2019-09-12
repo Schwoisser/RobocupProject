@@ -15,8 +15,8 @@ def nod(motionProxy, timestep=0.5):
     # times = [[0.5, 1.5, 2.5, 3.5], [0.5, 1.5, 2.5, 3.5]]
     motionProxy.angleInterpolation(names, keys, times, True)
 
-def macarena(motionProxy, timestep=0.538, time_start=1):
-    timestep = 0.538
+def macarena(motionProxy, timestep=0, time_start=1):
+    #timestep = 0.538
     isAbsolute = True
 
     angleList1_right = [-1.257460117340087891e-01, -7.213997840881347656e-02, -2.454819679260253906e-01,
