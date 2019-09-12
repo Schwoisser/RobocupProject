@@ -384,9 +384,9 @@
 % was not built to handle multiple paragraphs
 %
 
-\author{Milan~Pogadl,~\IEEEmembership{232964}
-        Marius~Kaiser,~\IEEEmembership{}
-        John~Doe,~\IEEEmembership{}
+\author{Milan~Pogadl,~\IEEEmembership{232964},
+        Marius~Kaiser,~\IEEEmembership{},
+        John~Doe,~\IEEEmembership{},
         and~Jane~Doe,~\IEEEmembership{}% <-this % stops a space
 \thanks{}% <-this % stops a space
 \thanks{}% <-this % stops a space
@@ -446,7 +446,7 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-How to analys music to make a robot dance.
+How to analyse music to make a robot dance to it.
 \end{abstract}
 
 
@@ -486,15 +486,23 @@ How to analys music to make a robot dance.
 \hfill September 10, 2019
 
 \subsection{Essentia}
-Essentia
+Finding the right music analysis framework was a bit difficult, because there a lot of frameworks for this in Python. But we found a research paper\cite{TOOLBOXES} that compared the many different music analysis libraries and Essentia was the best library with Python bindings. Essentia is used in many diffenrent applications like: freesound.org, KORG, Fretello and Crypt of the NecroDancer \cite{Feature}. \newline
+To use Essentia you have to load the music with one of the different loaders and then you can apply one of the many algorithms of the library on it \cite{RETRIEVAL}. \newline
+We used RhythmExtractor2013 for the Beat Detection, Intensity to get the mood of the music and Danceability to decide if the given sound file represents music.
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
 
-\subsubsection{Key Frames}
+\subsection{Key Frames}
+Creating working key frames for the dance moves of the robot proved to be more difficult, than we expected. Every move had to be tested directly withe the robot to check its stability so that the robot would not fall down while dancing. We had to optimize every move for a variable speed derived from the beats per minute of the music.
 
-\subsubsection{Dance Generation}
-Mood
+% key frame recording
+% time interpolation
+% angle interpolation
+
+\subsection{Dance Generation}
+First the sound file is loaded with an Essentia loader. Then we analyze the Track with the RhythmExtractor2013, Intensity and Danceability algorithms. We use the outcome of the Danceability algorithm to decide if the sound file represents danceable music. The result of the Intensity algorithm determines if the use of relaxed or more aggresive dancing movements. Then combined this moves get combined to form a choreography. The speed of the movements is adapted to the beats per minute of the song determined by RhythmExtractor2013 algorithm. RhythmExtractor2013 gives us also the position of each beat so that we can time some moves to a beat position.
+Then the music starts and the robot gets it movement commands to dance to the music.
 
 
 % An example of a floating figure using the graphicx package.
@@ -583,7 +591,7 @@ Mood
 
 
 \section{Conclusion}
-It might be even possible with faster Nao CPU to do the music analysis in real time.
+It might be even possible with a faster Nao CPU to do the music analysis in real time.
 
 
 
@@ -616,7 +624,7 @@ Appendix one text goes here.
 \section*{Acknowledgment}
 
 
-The authors would like to thank...
+The authors would like to thank the Universitat Pompeu Fabra for developing Essentia and making available for the publie as an opensource library.
 
 
 % Can use something like this to put references on a page
@@ -649,27 +657,27 @@ The authors would like to thank...
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-\begin{thebibliography}{1}
+\begin{thebibliography}{4}
 
-\bibitem{IEEEhowto:TOOLBOXES}
+\bibitem{TOOLBOXES}
 David Moffat, David Ronan, Joshua D. Reiss, \newline 
 \emph{EVALUATION OF AUDIO FEATURE EXTRACTION TOOLBOXES}, \newline
 \relax Center for Digital Music, 
 \newline Queen Mary University of London, 2015.
 
-\bibitem{IEEEhowto:RETRIEVAL}
+\bibitem{RETRIEVAL}
  Dmitry Bogdanov, Nicolas Wack, Emilia Gomez, Sankalp Gulati1, Perfecto Herrera, Oscar Mayor, Gerard Roma1, Justin Salamon, Jose Zapata1and Xavier Serra1, \newline 
 \emph{ESSENTIA: AN AUDIO ANALYSIS LIBRARY FOR \newline MUSICINFORMATION RETRIEVAL}, \newline
 \relax Music Technology Group, \newline 
 Universitat Pompeu Fabra, Barcelona, Spain, 2013.
 
-\bibitem{IEEEhowto:Feature}
+\bibitem{Feature}
 Dmitry Bogdanov, \newline 
 \emph{Music Feature Analysis with Essentia}, \newline
 \relax Music Technology Group, \newline 
 Universitat Pompeu Fabra, Barcelona, Spain, 2019.
 
-\bibitem{IEEEhowto:Extraction}
+\bibitem{Extraction}
 Akshay Paranjape, \newline 
 \emph{Tools for Feature Extraction - exploring and using essentia library}, \newline
 \relax 2017.
