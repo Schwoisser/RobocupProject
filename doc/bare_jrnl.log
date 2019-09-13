@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  10 SEP 2019 14:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  12 SEP 2019 13:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -109,23 +109,22 @@ LaTeX Font Info:    ... okay on input line 370.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
-
 ]
 (./bare_jrnl.aux) ) 
 Here is how much of TeX's memory you used:
  915 strings out of 492982
- 16040 string characters out of 6134895
- 72814 words of memory out of 5000000
+ 16000 string characters out of 6134895
+ 73814 words of memory out of 5000000
  4548 multiletter control sequences out of 15000+600000
  38502 words of font info for 68 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 26i,5n,19p,230b,208s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 26i,5n,19p,671b,208s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}<
 /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
 w/times/utmri8a.pfb>
-Output written on bare_jrnl.pdf (1 page, 49999 bytes).
+Output written on bare_jrnl.pdf (1 page, 51341 bytes).
 PDF statistics:
  25 PDF objects out of 1000 (max. 8388607)
  17 compressed objects within 1 object stream
