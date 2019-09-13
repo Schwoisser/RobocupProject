@@ -5,10 +5,10 @@ import almath
 import motion
 import time
 
-robotIP = "nao12.local"
-motionProxy = ALProxy("ALMotion", robotIP, 9559)
-posture = ALProxy("ALRobotPosture", robotIP, 9559)
-ttsProxy = ALProxy("ALTextToSpeech", robotIP, 9559)
+robotIP = "localhost"
+motionProxy = ALProxy("ALMotion", robotIP, 37215)
+posture = ALProxy("ALRobotPosture", robotIP, 37215)
+ttsProxy = ALProxy("ALTextToSpeech", robotIP, 37215)
 
 
 def StiffnessOn(proxy):
@@ -17,38 +17,6 @@ def StiffnessOn(proxy):
     pStiffnessLists = 1.0
     pTimeLists = 1.0
     proxy.stiffnessInterpolation(pNames, pStiffnessLists, pTimeLists)
-
-
-def StiffnessOffHand(proxy):
-
-    print "Left_Hand_Angles: ", motionProxy.getAngles("LArm", True)
-
-    pNames = ["LLeg", "RLeg"]
-    pStiffnessLists = 0
-    pTimeLists = 0.5
-
-    proxy.stiffnessInterpolation(pNames, pStiffnessLists, pTimeLists, True)
-
-
-def sit_test():
-    names = ["LHipYawPitch", "LHipRoll", "LHipPitch", "LKneePitch", "LAnklePitch", "LAnkleRoll",
-             "RHipYawPitch", "RHipRoll", "RHipPitch", "RKneePitch", "RAnklePitch", "RAnkleRoll"]
-    times = [[0.5]] * 12
-    angleLists3 = [-1.625621318817138672e-01, 2.151799201965332031e-02, -2.975540161132812500e-01,
-                   4.954400062561035156e-01, -9.208202362060546875e-02, -2.296805381774902344e-02,
-                   -1.625621318817138672e-01, -6.131792068481445312e-02, -3.007059097290039062e-01,
-                   4.970579147338867188e-01, -7.665801048278808594e-02, 5.219793319702148438e-02]
-    angleLists1 = [-1.702320575714111328e-01, 1.012859344482421875e-01, 1.304318904876708984e-01,
-                   -8.901405334472656250e-02, 9.046411514282226562e-02, -1.288139820098876953e-01,
-                   -1.702320575714111328e-01, -9.966802597045898438e-02, 1.303479671478271484e-01,
-                   -8.125996589660644531e-02, 8.901405334472656250e-02, 1.304318904876708984e-01]
-
-    for i in range(3):
-        motionProxy.angleInterpolation(names, angleLists3, times, True)
-        time.sleep(1)
-        motionProxy.angleInterpolation(names, angleLists1, times, True)
-        time.sleep(1)
-
 
 def sit():
     names = ["LHipYawPitch", "LHipRoll", "LHipPitch", "LKneePitch", "LAnklePitch", "LAnkleRoll",
@@ -364,8 +332,7 @@ def makarina():
 
 
 def dance4():
-    # Choregraphe simplified export in Python.
-    from naoqi import ALProxy
+
     names = list()
     times = list()
     keys = list()
@@ -725,33 +692,33 @@ def dance6():
 def main(robotIP):
     # Init proxies.
     try:
-        motionProxy = ALProxy("ALMotion", robotIP, 9559)
+        motionProxy = ALProxy("ALMotion", robotIP, 37215)
     except Exception, e:
         print "Could not create proxy to ALMotion"
         print "Error was: ", e
     try:
-        posture = ALProxy("ALRobotPosture", robotIP, 9559)
+        posture = ALProxy("ALRobotPosture", robotIP, 37215)
     except Exception, e:
         print "Could not create proxy to ALRobotPosture"
         print "Error was: ", e
     StiffnessOn(motionProxy)
     posture.goToPosture("Stand", 0.5)
     headMove(0.5)
-    # time.sleep(2)
-    # headMove_1()
-    # time.sleep(2)
-    # dance4()
-    # dance5()
-    # time.sleep(2)
-    # dance6()
+    time.sleep(2)
+    headMove_1()
+    time.sleep(2)
+    dance4()
+    dance5()
+    time.sleep(2)
+    dance6()
     posture.goToPosture("Stand", 0.5)
-    # choreography_1()
-    # time.sleep(0.5)
-    # makarina()
-    # posture.goToPosture("Stand", 0.5)
-    # time.sleep(0.5)
-    # choreography_2()
-    # choreography_3()
+    choreography_1()
+    time.sleep(0.5)
+    makarina()
+    posture.goToPosture("Stand", 0.5)
+    time.sleep(0.5)
+    choreography_2()
+    choreography_3()
 
     # ttsProxy.say("Thank you")
     # motionProxy.rest()
@@ -760,10 +727,10 @@ def main(robotIP):
 
 
 if __name__ == "__main__":
-    robotIp= "nao12.local"
+    robotIp = "localhost"
 
     if len(sys.argv) <= 1:
-        print "Usage python motion_setFootStepDance.py robotIP (optional default: 127.0.0.1)"
+        print "Usage python  robotIP (optional default: 127.0.0.1)"
     else:
         robotIp = sys.argv[1]
 
