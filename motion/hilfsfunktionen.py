@@ -21,7 +21,7 @@ def timelineFormat(names, keys, times,fkt_name="dance",file_name="dance_fkt.py")
     file.close()
 
 # uses 4*Space for indentation
-def timelineFormat_space(names, keys, times,fkt_name="dance",file_name="dance_fkt.py":
+def timelineFormat_space(names, keys, times,fkt_name="dance",file_name="dance_fkt.py"):
     file = open(r""+file_name,"w+") 
     time_string = "\n\n    if timestep == 0:\n        times = list()"
     # write in File
