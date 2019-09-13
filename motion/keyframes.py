@@ -535,8 +535,8 @@ def dance6(motionProxy, timestep=0, time_start=1):
 
     if timestep == 0:
         times = list()
-        times.append([1.16, 2.36, 3.56, 4.76, 5.96, 7.16]) # HeadPitch
-        times.append([1.16, 2.36, 3.56, 4.76, 5.96, 7.16]) # HeadYaw
+        times.append([0.56, 1.16, 1.76, 2.36, 2.96, 3.56, 4.16, 4.76, 5.36, 5.96, 6.56, 7.16]) # HeadPitch
+        times.append([0.56, 1.16, 1.76, 2.36, 2.96, 3.56, 4.16, 4.76, 5.36, 5.96, 6.56, 7.16]) # HeadYaw
         times.append([0.56, 1.16, 1.76, 2.36, 2.96, 3.56, 4.16, 4.76, 5.36, 5.96, 6.56, 7.16]) # LElbowRoll
         times.append([0.56, 1.16, 1.76, 2.36, 2.96, 3.56, 4.16, 4.76, 5.36, 5.96, 6.56, 7.16]) # LElbowYaw
         times.append([0.56, 1.16, 1.76, 2.36, 2.96, 3.56, 4.16, 4.76, 5.36, 5.96, 6.56, 7.16]) # LHand
