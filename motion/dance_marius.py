@@ -6,8 +6,8 @@ import motion
 import time
 import keyframes as kf
 
-robotIP = "localhost" #"nao12.local"
-port = 46335 #9559
+robotIP = "localhost"
+port = 40531
 motionProxy = ALProxy("ALMotion", robotIP, port)
 posture = ALProxy("ALRobotPosture", robotIP, port)
 ttsProxy = ALProxy("ALTextToSpeech", robotIP, port)
@@ -20,6 +20,11 @@ time.sleep(0.5)
 ttsProxy.say("1")
 time.sleep(0.5)
 ttsProxy.say("Go!")
-
-kf.dance6(motionProxy)
+# kf.dance4(motionProxy)
+kf.dance1(motionProxy)
+# kf.macarena(motionProxy)
+# kf.up_and_down(motionProxy)
+# kf.dance5(motionProxy)
+# kf.dance6(motionProxy)
+# kf.dance7(motionProxy)
 #motionProxy.angleInterpolation(names, keys, times, True)

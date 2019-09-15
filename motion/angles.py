@@ -3,7 +3,7 @@ from naoqi import ALProxy
 import time
 
 robotIP = "localhost"
-port = 38733  # 9559
+port = 40531  # 9559
 motionProxy = ALProxy("ALMotion", robotIP, port)
 posture = ALProxy("ALRobotPosture", robotIP, port)
 ttsProxy = ALProxy("ALTextToSpeech", robotIP, port)
@@ -607,6 +607,7 @@ def main(robotIP):
     StiffnessOn(motionProxy)
     posture.goToPosture("Stand", 0.5)
     headMove(0.5)
+    up_and_down()
     time.sleep(2)
     dance4()
     # dance7_test(motionProxy)
