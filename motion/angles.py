@@ -603,16 +603,113 @@ def dance6():  # Arms left to right Marius
     motionProxy.angleInterpolation(names, keys, times, True)
 
 
+def dance8():  # marius
+    names = list()
+    times = list()
+    keys = list()
+
+    names.append("HeadPitch")
+    times.append([0.96, 1.36, 1.76, 2.56, 2.96])
+    keys.append([0.000149418, 0, 0.0558505, 0.0558505, 0.000149418])
+
+    names.append("HeadYaw")
+    times.append([0.96, 1.36, 1.76, 2.56, 2.96])
+    keys.append([0.00816048, 0, -0.502655, 0.502655, 0.00816048])
+
+    names.append("LElbowRoll")
+    times.append([0.96, 1.36, 1.76, 2.16, 2.56, 2.96])
+    keys.append([-0.441568, -0.485202, -0.432842, -1.13272, -0.226893, -0.441568])
+
+    names.append("LElbowYaw")
+    times.append([0.96, 1.36, 1.76, 2.16, 2.56, 2.96])
+    keys.append([-1.20428, -0.0959931, -1.20253, -0.0959931, 0.101229, -1.20428])
+
+    names.append("LShoulderPitch")
+    times.append([0.96, 1.36, 1.76, 2.16, 2.56, 2.96])
+    keys.append([1.39103, 0.359538, 1.37532, -0.226893, -0.232129, 1.39103])
+
+    names.append("LShoulderRoll")
+    times.append([0.96, 1.36, 1.76, 2.16, 2.56, 2.96])
+    keys.append([0.254818, 0.249582, 0.267035, -0.0401426, 1.06465, 0.254818])
+
+    names.append("RElbowRoll")
+    times.append([0.96, 1.36, 1.76, 2.16, 2.56, 2.96])
+    keys.append([0.441568, 1.13272, 0.235619, 0.471239, 0.432842, 0.441568])
+
+    names.append("RElbowYaw")
+    times.append([0.96, 1.36, 1.76, 2.16, 2.56, 2.96])
+    keys.append([1.21126, 0.0959931, 0.101229, 0.0959931, 1.20253, 1.21126])
+
+    names.append("RShoulderPitch")
+    times.append([0.96, 1.36, 1.76, 2.16, 2.56, 2.96])
+    keys.append([1.38579, -0.226893, -0.232129, 0.359538, 1.36136, 1.38579])
+
+    names.append("RShoulderRoll")
+    times.append([0.96, 1.36, 1.76, 2.16, 2.56, 2.96])
+    keys.append([-0.26529, 0.0401426, -1.06465, -0.249582, -0.267035, -0.26529])
+
+    motionProxy.angleInterpolation(names, keys, times, True)
+
+
+def dab():
+
+    names = list()
+    times = list()
+    keys = list()
+
+    names.append("HeadPitch")
+    times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.56, 4.32])
+    keys.append([-0.168314, 0, 0.296706, 0, -0.168314, 0.296706, -0.168314])
+
+    names.append("HeadYaw")
+    times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.56, 4.32])
+    keys.append([-5.82076e-11, 0.79587, 0.801106, 0.79587, -5.82076e-11, -0.799361, -5.82076e-11])
+
+    names.append("LElbowRoll")
+    times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32])
+    keys.append([-0.420029, -0.837758, -1.11527, -0.836013, -0.420029, -0.219911, -0.20944, -0.219911, -0.420029])
+
+    names.append("LElbowYaw")
+    times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32])
+    keys.append([-1.20295, -0.0471239, -0.312414, -0.0453786, -1.20295, 0.455531, 0.462512, 0.455531, -1.20295])
+
+    names.append("LShoulderPitch")
+    times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32])
+    keys.append([1.43826, 0.493928, -0.219911, 0.499164, 1.43826, -0.181514, -0.689405, -0.181514, 1.43826])
+
+    names.append("LShoulderRoll")
+    times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32])
+    keys.append([0.216204, 0.0994838, -0.0122173, 0.10472, 0.216204, 0.872665, 0.872665, 0.872665, 0.216204])
+
+    names.append("RElbowRoll")
+    times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32])
+    keys.append([0.412962, 0.219911, 0.204204, 0.21293, 0.412962, 0.823795, 1.09956, 0.823795, 0.412962])
+
+    names.append("RElbowYaw")
+    times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32])
+    keys.append([1.20143, -0.455531, -0.464258, -0.459022, 1.20143, 0.0471239, 0.310669, 0.0471239, 1.20143])
+
+    names.append("RShoulderPitch")
+    times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32])
+    keys.append([1.43312, -0.181514, -0.69115, -0.185005, 1.43312, 0.493928, -0.204204, 0.493928, 1.43312])
+
+    names.append("RShoulderRoll")
+    times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32])
+    keys.append([-0.220627, -0.872665, -0.876155, -0.87441, -0.220627, -0.0994838, 0, -0.0994838, -0.220627])
+
+    motionProxy.angleInterpolation(names, keys, times, True)
+
+
 def main(robotIP):
     StiffnessOn(motionProxy)
     posture.goToPosture("Stand", 0.5)
     headMove(0.5)
     up_and_down()
     time.sleep(2)
-    dance4()
+    dab()
     # dance7_test(motionProxy)
     time.sleep(1)
-    test_choreo3()
+    dance8()
 
     # ttsProxy.say("Thank you")
     # motionProxy.rest()
