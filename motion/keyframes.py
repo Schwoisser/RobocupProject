@@ -782,3 +782,46 @@ def dance7(motionProxy, timestep=0, time_start=1):
         times = set_timeline(names, keys, timestep, time_start)
 
     motionProxy.angleInterpolation(names, keys, times, True)
+
+def dab(motionProxy, timestep=0, time_start=1):
+    names = list()
+    keys = list()
+
+    names.append("HeadPitch")
+    keys.append([-0.168314, 0, 0.296706, 0, -0.168314, 0.296706, -0.168314])
+    names.append("HeadYaw")
+    keys.append([-5.82076e-11, 0.79587, 0.801106, 0.79587, -5.82076e-11, -0.799361, -5.82076e-11])
+    names.append("LElbowRoll")
+    keys.append([-0.420029, -0.837758, -1.11527, -0.836013, -0.420029, -0.219911, -0.20944, -0.219911, -0.420029])
+    names.append("LElbowYaw")
+    keys.append([-1.20295, -0.0471239, -0.312414, -0.0453786, -1.20295, 0.455531, 0.462512, 0.455531, -1.20295])
+    names.append("LShoulderPitch")
+    keys.append([1.43826, 0.493928, -0.219911, 0.499164, 1.43826, -0.181514, -0.689405, -0.181514, 1.43826])
+    names.append("LShoulderRoll")
+    keys.append([0.216204, 0.0994838, -0.0122173, 0.10472, 0.216204, 0.872665, 0.872665, 0.872665, 0.216204])
+    names.append("RElbowRoll")
+    keys.append([0.412962, 0.219911, 0.204204, 0.21293, 0.412962, 0.823795, 1.09956, 0.823795, 0.412962])
+    names.append("RElbowYaw")
+    keys.append([1.20143, -0.455531, -0.464258, -0.459022, 1.20143, 0.0471239, 0.310669, 0.0471239, 1.20143])
+    names.append("RShoulderPitch")
+    keys.append([1.43312, -0.181514, -0.69115, -0.185005, 1.43312, 0.493928, -0.204204, 0.493928, 1.43312])
+    names.append("RShoulderRoll")
+    keys.append([-0.220627, -0.872665, -0.876155, -0.87441, -0.220627, -0.0994838, 0, -0.0994838, -0.220627])
+
+    if timestep == 0:
+        times = list()
+        times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.56, 4.32]) # HeadPitch
+        times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.56, 4.32]) # HeadYaw
+        times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32]) # LElbowRoll
+        times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32]) # LElbowYaw
+        times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32]) # LShoulderPitch
+        times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32]) # LShoulderRoll
+        times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32]) # RElbowRoll
+        times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32]) # RElbowYaw
+        times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32]) # RShoulderPitch
+        times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32]) # RShoulderRoll
+    else:
+        times = set_timeline(names, keys, timestep, time_start)
+
+    motionProxy.angleInterpolation(names, keys, times, True)
+    #return names, keys, times
