@@ -1,9 +1,9 @@
 import sys
 from naoqi import ALProxy
 import time
-
-robotIP = "localhost"
-port = 40531  # 9559
+import keyframes as kf
+robotIP = "nao2.local"
+port = 9559
 motionProxy = ALProxy("ALMotion", robotIP, port)
 posture = ALProxy("ALRobotPosture", robotIP, port)
 ttsProxy = ALProxy("ALTextToSpeech", robotIP, port)
@@ -25,12 +25,111 @@ def StiffnessOn(proxy):
     proxy.stiffnessInterpolation(pNames, pStiffnessLists, pTimeLists)
 
 
+def up_and_down_original():
+    # Choregraphe simplified export in Python.
+    from naoqi import ALProxy
+    names = list()
+    times = list()
+    keys = list()
+
+    names.append("HeadPitch")
+    times.append([0.76, 1.96, 3.16, 4.36])
+    keys.append([-0.0106666, -0.0141376, -0.0141376, -0.0141376])
+
+    names.append("HeadYaw")
+    times.append([0.76, 1.96, 3.16, 4.36])
+    keys.append([-0.674338, 0.638078, -0.683508, 0.638078])
+
+    names.append("LAnklePitch")
+    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
+    keys.append([0.0828387, -0.488692, 0.0836714, -0.495674, 0.0836714, -0.488849, 0.0836714, -0.504072, 0.0836714])
+
+    names.append("LAnkleRoll")
+    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
+    keys.append([-0.103341, -0.102974, -0.103341, -0.101229, -0.103341, -0.102378, -0.103341, -0.102378, -0.103341])
+
+    names.append("LElbowRoll")
+    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
+    keys.append([-0.41295, -0.420158, -0.41295, -0.41295, -0.417546, -0.41295, -0.41295])
+
+    names.append("LElbowYaw")
+    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
+    keys.append([-1.21064, -1.22097, -1.20062, -1.20062, -1.21724, -1.20062, -1.20062])
+
+    names.append("LHipPitch")
+    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
+    keys.append([0.122436, -0.596903, 0.123575, -0.612611, 0.123575, -0.610563, 0.123575, -0.606502, 0.123575])
+
+    names.append("LHipRoll")
+    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
+    keys.append([0.121781, 0.122173, 0.121781, 0.122173, 0.121781, 0.114832, 0.121781, 0.114832, 0.121781])
+
+    names.append("LHipYawPitch")
+    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
+    keys.append([-0.174015, 0.0872665, -0.174015, 0.0785398, -0.174015, 0.0802851, -0.174015, 0.0872665, -0.174015])
+
+    names.append("LKneePitch")
+    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
+    keys.append([-0.0829613, 1.02451, -0.0851616, 1.02974, -0.0851616, 1.03448, -0.0851616, 1.03673, -0.0851616])
+
+    names.append("LShoulderPitch")
+    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
+    keys.append([1.42708, 1.38749, 1.44722, 1.44722, 1.40547, 1.44722, 1.44722])
+
+    names.append("LShoulderRoll")
+    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
+    keys.append([0.257591, 0.338173, 0.227903, 0.227903, 0.320011, 0.227903, 0.227903])
+
+    names.append("RAnklePitch")
+    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
+    keys.append([0.0828387, -0.488692, 0.0836714, -0.502655, 0.0836714, -0.488692, 0.0836714, -0.504072, 0.0836714])
+
+    names.append("RAnkleRoll")
+    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
+    keys.append([0.103341, 0.102974, 0.103341, 0.10472, 0.103341, 0.102974, 0.103341, 0.0996396, 0.103341])
+
+    names.append("RElbowRoll")
+    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
+    keys.append([0.41295, 0.41569, 0.41295, 0.41295, 0.41295, 0.41295, 0.41295])
+
+    names.append("RElbowYaw")
+    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
+    keys.append([1.21064, 1.21446, 1.20062, 1.20062, 1.21064, 1.20062, 1.20062])
+
+    names.append("RHipPitch")
+    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
+    keys.append([0.122436, -0.596903, 0.123575, -0.610865, 0.123575, -0.607375, 0.123575, -0.606502, 0.123575])
+
+    names.append("RHipRoll")
+    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
+    keys.append([-0.121781, -0.122173, -0.121781, -0.120428, -0.121781, -0.122173, -0.121781, -0.117404, -0.121781])
+
+    names.append("RHipYawPitch")
+    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
+    keys.append([-0.174015, 0.0872665, -0.174015, 0.0785398, -0.174015, 0.0802851, -0.174015, 0.0872665, -0.174015])
+
+    names.append("RKneePitch")
+    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
+    keys.append([-0.0829613, 1.02451, -0.0851616, 1.03498, -0.0851616, 1.02451, -0.0851616, 1.03673, -0.0851616])
+
+    names.append("RShoulderPitch")
+    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
+    keys.append([1.42708, 1.3873, 1.44722, 1.44722, 1.40547, 1.44722, 1.44722])
+
+    names.append("RShoulderRoll")
+    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
+    keys.append([-0.257591, -0.338594, -0.227903, -0.227903, -0.320011, -0.227903, -0.227903])
+
+    motionProxy.angleInterpolation(names, keys, times, True)
+
+
 def up_and_down():
-    names = ["HeadPitch", "HeadYaw", "LAnklePitch", "LAnkleRoll", "LHipPitch", "LHipRoll", "LHipYawPitch", "LKneePitch",
+    # names = ["HeadPitch", "HeadYaw", "LAnklePitch", "LAnkleRoll", "LHipPitch", "LHipRoll", "LHipYawPitch",
+    # "LKneePitch", "RAnklePitch", "RAnkleRoll", "RHipPitch", "RHipRoll", "RHipYawPitch", "RKneePitch"]
+    # times = ([[0.76, 1.96, 3.16, 4.36]] * 2) + [[0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96]] * 12
+    names = ["LAnklePitch", "LAnkleRoll", "LHipPitch", "LHipRoll", "LHipYawPitch", "LKneePitch",
              "RAnklePitch", "RAnkleRoll", "RHipPitch", "RHipRoll", "RHipYawPitch", "RKneePitch"]
-    times = ([[0.76, 1.96, 3.16, 4.36]] * 2) + [[0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96]] * 12
-    keys = [[-0.0141376, -0.0141376, -0.0141376, -0.0141376], [-0.683508, 0.638078, -0.683508, 0.638078],
-            [0.0828387, -0.498408, 0.0836714, -0.5079, 0.0836714, -0.498408, 0.0836714, -0.5079, 0.0836714],
+    keys = [[0.0828387, -0.498408, 0.0836714, -0.5079, 0.0836714, -0.498408, 0.0836714, -0.5079, 0.0836714],
             [-0.103341, -0.106182, -0.103341, -0.103341, -0.103341, -0.106182, -0.103341, -0.103341, -0.103341],
             [0.122436, -0.610599, 0.123575, -0.611738, 0.123575, -0.610598, 0.123575, -0.611738, 0.123575],
             [0.121781, 0.119108, 0.121781, 0.121781, 0.121781, 0.119108, 0.121781, 0.121781, 0.121781],
@@ -40,9 +139,9 @@ def up_and_down():
             [0.103341, 0.103341, 0.103341, 0.103341, 0.103341, 0.103341, 0.103341, 0.103341, 0.103341],
             [0.122436, -0.610599, 0.123575, -0.611738, 0.123575, -0.610598, 0.123575, -0.611738, 0.123575],
             [-0.121781, -0.121781, -0.121781, -0.121781, -0.121781, -0.121781, -0.121781, -0.121781, -0.121781],
-            [0 - 0.174015, 0.0872665, -0.174015, 0.0785398, -0.174015, 0.0802851, -0.174015, 0.0872665, -0.1740151],
+            [-0.174015, 0.0872665, -0.174015, 0.0785398, -0.174015, 0.0802851, -0.174015, 0.0872665, -0.1740151],
             [-0.0829613, 1.03453, -0.0851616, 1.03673, -0.0851616, 1.03452, -0.0851616, 1.03673, -0.0851616]]
-
+    times = set_timeline(names, keys, 1.0, 0.5)
     motionProxy.angleInterpolation(names, keys, times, True)
 
 
@@ -59,7 +158,7 @@ def dance1():
     effector_names = ["HeadYaw", "HeadPitch"]
     times = [[0.6], [0.6]]
 
-    for i in range(4):
+    for i in range(5):
         motionProxy.post.angleInterpolation(effector_names, [0.0, 0.5], times, True)
         motionProxy.post.angleInterpolation(effector_names, [0.0, -0.5], times, True)
 
@@ -704,12 +803,13 @@ def main(robotIP):
     StiffnessOn(motionProxy)
     posture.goToPosture("Stand", 0.5)
     headMove(0.5)
+    time.sleep((2))
     up_and_down()
     time.sleep(2)
     dab()
-    # dance7_test(motionProxy)
+    dance2()
     time.sleep(1)
-    dance8()
+    dance3()
 
     # ttsProxy.say("Thank you")
     # motionProxy.rest()
