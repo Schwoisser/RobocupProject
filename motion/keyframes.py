@@ -945,7 +945,7 @@ def dance8(motionProxy, timestep=0, time_start=1):
         times = set_times(names, keys, timestep, time_start)
 
     motionProxy.angleInterpolation(names, keys, times, True)
-    dab(motionProxy)
+    
 
 def dance_test(motionProxy, timestep=0, time_start=1):
     names = list()
