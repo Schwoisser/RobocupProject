@@ -15,7 +15,7 @@ def timelineFormat(names, keys, times,fkt_name="dance",file_name="dance_fkt.py")
             else:
                 file.write(str(key) + ", ")
                 #time_string += str(n_i)
-    time_string += "\n\telse:\n\t\ttimes = set_timeline(names, keys, timestep, time_start)"
+    time_string += "\n\telse:\n\t\ttimes = set_times(names, keys, timestep, time_start)"
     file.write(time_string)
     file.write("\n\n\tmotionProxy.angleInterpolation(names, keys, times, True)\n\t#return names, times, keys")
     file.close()
@@ -37,7 +37,7 @@ def timelineFormat_space(names, keys, times,fkt_name="dance",file_name="dance_fk
             else:
                 file.write(str(key) + ", ")
                 #time_string += str(n_i)
-    time_string += "\n    else:\n        times = set_timeline(names, keys, timestep, time_start)"
+    time_string += "\n    else:\n        times = set_times(names, keys, timestep, time_start)"
     file.write(time_string)
     file.write("\n\n    motionProxy.angleInterpolation(names, keys, times, True)\n    #return names, times, keys")
     file.close()
