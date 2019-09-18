@@ -384,9 +384,9 @@
 % was not built to handle multiple paragraphs
 %
 
-\author{Milan~Pogadl,~\IEEEmembership{232964},
+\author{Milan~Pogadl,~\IEEEmembership{},
         Marius~Kaiser,~\IEEEmembership{},
-        John~Doe,~\IEEEmembership{},
+        Khaliun Jargal,~\IEEEmembership{},
         and~Jane~Doe,~\IEEEmembership{}% <-this % stops a space
 \thanks{}% <-this % stops a space
 \thanks{}% <-this % stops a space
@@ -494,7 +494,9 @@ We used RhythmExtractor2013 for the Beat Detection, Intensity to get the mood of
 %\IEEEpubidadjcol
 
 \subsection{Key Frames}
-Creating working key frames for the dance moves of the robot proved to be more difficult, than we expected. Every move had to be tested directly withe the robot to check its stability so that the robot would not fall down while dancing. We had to optimize every move for a variable speed derived from the beats per minute of the music.
+The NAOqi library ALMotion provides methods which allow complex movements of the NAO. It contains commands allowing to manipulate joint stiffness, joint angles, and a higher level API allowing us to control the moves. \newline The following methods are important for the implementation of our movements angleInterpolation(names, angleLists, timeLists, isAbsolute) and getAngles(names, useSensors).\newline
+For basic postures, we implemented it using API from NAOqi. Next, angles of Nao joints are gained through getAngles function to create particular movement. \newline
+Creating working key frames for the dance moves of the robot proved to be more difficult, than we expected. Therefore, a complex choreography for the Nao has been built in this project using the timeline functions of the Choregraphe software. Choregraphe is a multi-platform desktop application which allows us to create our dance, test them at home and monitor Nao through programming. Every move had to be tested directly with the robot to check its stability so that the robot would not fall down while dancing. We had to optimize every move for a variable speed derived from the beats per minute of the music.
 
 % key frame recording
 % time interpolation
