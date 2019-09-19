@@ -946,6 +946,10 @@ def dance8(motionProxy, timestep=0, time_start=1):
         times = set_times(names, keys, timestep, time_start)
 
     motionProxy.angleInterpolation(names, keys, times, True)
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 501d9658db38bf50eae77d5bc860c307007838db
 
 def dance_test(motionProxy, timestep=0, time_start=1):
     names = list()

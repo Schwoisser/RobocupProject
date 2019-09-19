@@ -20,14 +20,18 @@ def wait_for_sync(start, duration, beats):
 
 
 def low_bpm_relax(motionProxy, bpm, intensity, start, duration, beats):
+    # wait_for_sync(start, duration, beats)
+    # kf.dance8(motionProxy, ((60.0)/bpm), 1)
+    # wait_for_sync(start, duration, beats)
+    # kf.dance1(motionProxy)
+    # wait_for_sync(start, duration, beats)
+    # kf.dance5(motionProxy, ((60.0)/bpm), 1)
+    #wait_for_sync(start, duration, beats)
+    #kf.dance7(motionProxy, ((60.0)/bpm), 1)
+    # wait_for_sync(start, duration, beats)
+    # kf.macarena(motionProxy, ((60.0)/bpm), 1)
     wait_for_sync(start, duration, beats)
-    kf.dance4(motionProxy, ((60.0)/bpm), 1)
-    wait_for_sync(start, duration, beats)
-    kf.dance1(motionProxy)
-    wait_for_sync(start, duration, beats)
-    kf.dance5(motionProxy, ((60.0)/bpm), 1)
-    wait_for_sync(start, duration, beats)
-    kf.dance7(motionProxy, ((60.0)/bpm), 1)
+    kf.dance_test(motionProxy, ((60.0)/bpm*1.1), 1)
 
 def low_bpm_neutral(motionProxy, bpm, intensity, start, duration, beats):
 	low_bpm_relax(motionProxy, bpm, intensity, start, duration, beats)
@@ -55,13 +59,13 @@ def medium_bpm_aggressive(motionProxy, bpm, intensity, start, duration, beats):
 
 def high_bpm_relax(motionProxy, bpm, intensity, start, duration, beats):
     wait_for_sync(start, duration, beats)
+    kf.dance6(motionProxy,((60.0)/bpm*1.1),1)
+    wait_for_sync(start, duration, beats)
     kf.dance5(motionProxy,((60.0)/bpm*1.1),1)
     wait_for_sync(start, duration, beats)
     kf.dance4(motionProxy,((60.0)/bpm*1.1),1)
     wait_for_sync(start, duration, beats)
     kf.macarena(motionProxy,((60.0)/bpm*1.1),1)
-    wait_for_sync(start, duration, beats)
-    kf.dance6(motionProxy,((60.0)/bpm*1.1),1)
 
 def high_bpm_neutral(motionProxy, bpm, intensity, start, duration, beats):
     high_bpm_relax(motionProxy, bpm, intensity, start, duration, beats)
@@ -70,11 +74,11 @@ def high_bpm_aggressive(motionProxy, bpm, intensity, start, duration, beats):
     high_bpm_relax(motionProxy, bpm, intensity, start, duration, beats)
 
 def choreography(motionProxy, bpm, intensity, start, duration, beats):
-    if (bpm >= 80 and bpm <= 120 and intensity == 0):
+    if (bpm >= 69 and bpm <= 120 and intensity == 0):
         low_bpm_neutral(motionProxy, bpm, intensity, start, duration, beats)
-    elif (bpm >=80 and bpm <=120 and intensity == -1):
+    elif (bpm >=69 and bpm <=120 and intensity == -1):
     	low_bpm_relax(motionProxy, bpm, intensity, start, duration, beats)
-    elif bpm >= 80 and bpm <= 120 and intensity == 1:
+    elif bpm >= 69 and bpm <= 120 and intensity == 1:
         low_bpm_aggressive(motionProxy, bpm, intensity, start, duration, beats)
     elif bpm>120 and bpm <=150 and intensity == -1:
         medium_bpm_relax(motionProxy, bpm, intensity, start, duration, beats)

@@ -38,7 +38,7 @@ def beatDetection(song="song"):
 	#print("Beats:", beats)
 	print("Intensity(relaxed (-1), moderate (0), or aggressive (1)): ", intensity)
 	print("Duration", duration)
-	print("beats : ", beats)
+	#print("beats : ", beats)
 	return bpm, intensity, beats, duration, danceab
 	
 
@@ -54,23 +54,25 @@ def musicPlayer(song="song"):
 
 
 	
-def doDance(bpm, intensity, duration, beats):
+def doDance(bpm, intensity, duration, beats, song):
     #do a move at the next beat, if we have enough beat info
 	#Dance 1 with intensity -1,0 or 1 
-	robotIP = "nao34.local" #"nao12.local"
+	robotIP = "10.0.7.106" #"nao12.local"
 	port = 9559 #9559
 	motionProxy = ALProxy("ALMotion", robotIP, port)
 	posture = ALProxy("ALRobotPosture", robotIP, port)
 	ttsProxy = ALProxy("ALTextToSpeech", robotIP, port)
 	start = time.time()
 	posture.goToPosture("StandInit",1.0)
-	time.sleep(2)
 	if (duration <25.0):
 		return ttsProxy.say("Music is not long enough, please choose another music.")
-	if (bpm<70):
+	if (bpm<69):
 		return ttsProxy.say("Music is too slow, please choose another music")
 	if (bpm>170):
 		return ttsProxy.say("This music is too fast for a robot, please choose another one")
+	musicThread = threading.Thread(target=musicPlayer(song))
+	time.sleep(2)
+	musicThread.start()
 	while (start + duration) > time.time():
 		choreography(motionProxy, bpm, intensity, start, duration, beats)
 			
@@ -82,6 +84,5 @@ if __name__ == "__main__":
 	#parser.add_argument("--port", type=int, default=9559, help="Robot port number")
 	args = parser.parse_args()
 	bpm, intensity, beats, duration, danceab = beatDetection(args.song)
-	musicThread = threading.Thread(target=musicPlayer(args.song))
-	musicThread.start()
-	doDance(bpm, intensity, duration,beats)
+
+	doDance(bpm, intensity, duration,beats, args.song)
