@@ -1,5 +1,5 @@
 import time
-
+import choreographies as ch
 
 def set_times(names, keys, timestep, time_start):
     new_times = list()
@@ -42,6 +42,7 @@ def up_and_down(motionProxy):
 
 def macarena(motionProxy, timestep=0.538, time_start=1):
     # timestep = 0.538
+
     isAbsolute = True
 
     angleList1_right = [-1.257460117340087891e-01, -7.213997840881347656e-02, -2.454819679260253906e-01,
@@ -945,7 +946,6 @@ def dance8(motionProxy, timestep=0, time_start=1):
         times = set_times(names, keys, timestep, time_start)
 
     motionProxy.angleInterpolation(names, keys, times, True)
-    dab(motionProxy)
 
 def dance_test(motionProxy, timestep=0, time_start=1):
     names = list()
