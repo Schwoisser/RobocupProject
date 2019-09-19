@@ -2,20 +2,20 @@ import keyframes as kf
 import time as time
 
 def wait_for_sync(start, duration, beats):
+    now = time.time()
+    time_past = now - start
     for i in range(len(beats)):
-        now = time.time()
-        time_past = now - start
         # print("beat " + str(i) + " " + str(beats[i]))
         if(i == 0):
             if(time_past < beats[0]):
                 wait_time = beats[0] - time_past
                 time.sleep(wait_time)
-                return wait_time
+                return beats[0]
         elif(time_past > beats[i - 1] and time_past < beats[i]):
             wait_time = beats[i] - time_past
             print(wait_time)
             time.sleep(wait_time)
-            return wait_time
+            return beats[i] - beats[i - 1]
     return 0
 
 
