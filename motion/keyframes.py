@@ -11,11 +11,11 @@ def set_times(names, keys, timestep, time_start):
 
 # KEYFRAMES ###############################################################################
 
-def nod(motionProxy, timestep=0.5):
-    names = ["HeadYaw", "HeadPitch"]
-    keys = [[0.0, 0.0, 0.0, 0.0], [0.5, -0.5, 0.5, -0.5]]
-    times = [[timestep * (i + 1) for i in range(4)],  # for "HeadPitch" in seconds
-             [timestep * (i + 1) for i in range(4)]]  # for "HeadYaw" in seconds
+def nod(motionProxy, timestep=0.5, time_start = 1, repetitions = 1):
+    names = [ "HeadPitch"]
+    keys = [[0.4, -0.1, 0.4, -0.1] * repetitions]
+    # for "HeadYaw" in seconds
+    times = [[timestep * (i + 1) for i in range(4 * repetitions)]]
     # times = [[0.5, 1.5, 2.5, 3.5], [0.5, 1.5, 2.5, 3.5]]
     motionProxy.angleInterpolation(names, keys, times, True)
 
@@ -37,11 +37,11 @@ def up_and_down(motionProxy):
             [0 - 0.174015, 0.0872665, -0.174015, 0.0785398, -0.174015, 0.0802851, -0.174015, 0.0872665, -0.1740151],
             [-0.0829613, 1.03453, -0.0851616, 1.03673, -0.0851616, 1.03452, -0.0851616, 1.03673, -0.0851616]]
 
-    motionProxy.post.angleInterpolation(names, keys, times, True)
+    motionProxy.angleInterpolation(names, keys, times, True)
 
 
-def macarena(motionProxy, timestep=0.538, time_start=1):
-    # timestep = 0.538
+def macarena(motionProxy, timestep_length=0.538, time_start=1):
+    timestep = float(timestep_length)
 
     isAbsolute = True
 
@@ -491,7 +491,7 @@ def dance5(motionProxy, timestep=0, time_start=1):
 
     motionProxy.angleInterpolation(names, keys, times, True)
 
-    dance_test(motionProxy, timestep)
+    # dance_test(motionProxy, timestep)
 
 
 def dance6(motionProxy, timestep=0, time_start=1):
@@ -598,9 +598,9 @@ def dance6(motionProxy, timestep=0, time_start=1):
 
     motionProxy.angleInterpolation(names, keys, times, True)
     # return names, times, keys
-    dance4(motionProxy, 0.6)
-    time.sleep(0.3)
-    dance1(motionProxy)
+    # dance4(motionProxy, 0.6)
+    # time.sleep(0.3)
+    # dance1(motionProxy)
 
 
 def dance7(motionProxy, timestep=0, time_start=1):
@@ -927,7 +927,7 @@ def arm_leg_both(motionProxy, timestep=0, time_start=1):
     else:
         times = set_times(names, keys, timestep, time_start)
 
-    motionProxy.post.angleInterpolation(names, keys, times, True)
+    motionProxy.angleInterpolation(names, keys, times, True)
 
 
 def arm_walk(motionProxy, timestep=0, time_start=1):

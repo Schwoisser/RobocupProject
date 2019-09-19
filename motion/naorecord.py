@@ -1,30 +1,22 @@
 import argparse
 from naoqi import ALProxy
 import time as time
-import essentia
-from essentia.standard import *
-from pylab import plot, show, figure, imshow
-import matplotlib.pyplot as plt
+import essentia #beat detection
+from essentia.standard import * #beat detection
 import threading
 from thread import start_new_thread
-from pydub import AudioSegment
-from pydub.playback import play
-import keyframes as kf
-from choreographies import choreography
-import sys
-import numpy as np
-import almath
-import motion
-
-
+from pydub import AudioSegment #musicplayer 
+from pydub.playback import play #musicplayer
+import keyframes as kf #python code with the keyframes for the moviment
+from choreographies import choreography 
 
 
 def beatDetection(song="song"):
 	record_path = song;
 	loader = essentia.standard.MonoLoader(filename=record_path)
 	audio = loader()
-	rate = 44000
-	# Compute beat positions and BPM and Danceability
+	rate = 44000 # sampling rate
+	# Compute beat positions and BPM, Danceability, Intensity and Duration of the music
 	rhythm_extractor = RhythmExtractor2013(method="multifeature")
 	bpm, beats, beats_confidence, _, beats_intervals = rhythm_extractor(audio)
 	danceability = Danceability(sampleRate=rate)
@@ -38,32 +30,32 @@ def beatDetection(song="song"):
 	#print("Beats:", beats)
 	print("Intensity(relaxed (-1), moderate (0), or aggressive (1)): ", intensity)
 	print("Duration", duration)
-	#print("beats : ", beats)
 	return bpm, intensity, beats, duration, danceab
 	
 
 def musicPlayer(song="song"):
+	#load a music file and play
 	record_path = song
 	music = AudioSegment.from_mp3(record_path)
-	#time.sleep(2)
 	print("play")
 	print("if error -> alsa reload")
 	start_new_thread(play, (music,))
 
 
-
-
 	
 def doDance(bpm, intensity, duration, beats, song):
     #do a move at the next beat, if we have enough beat info
-	#Dance 1 with intensity -1,0 or 1 
-	robotIP = "10.0.7.106" #"nao12.local"
-	port = 9559 #9559
+	robotIP = "localhost"  # "nao34.local" # 10.0.7.106
+	robotIP = "nao34.local"
+	robotIP = "10.0.7.100"
+	# port = 42865 
+	port =9559
 	motionProxy = ALProxy("ALMotion", robotIP, port)
 	posture = ALProxy("ALRobotPosture", robotIP, port)
 	ttsProxy = ALProxy("ALTextToSpeech", robotIP, port)
 	start = time.time()
-	posture.goToPosture("StandInit",1.0)
+	posture.goToPosture("Stand", 1.0)
+	#posture.goToPosture("StandInit",1.0)
 	if (duration <25.0):
 		return ttsProxy.say("Music is not long enough, please choose another music.")
 	if (bpm<69):
@@ -74,15 +66,13 @@ def doDance(bpm, intensity, duration, beats, song):
 	time.sleep(2)
 	musicThread.start()
 	while (start + duration) > time.time():
-		choreography(motionProxy, bpm, intensity, start, duration, beats)
+		choreography(motionProxy, bpm, intensity, start, duration, beats, posture)
+	posture.goToPosture("Rest", 1.0)
 			
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 	parser.add_argument("--song", type=str, help="Patho to Song")
-	#parser.add_argument("--ip", type=str, default="nao34.local", help="Robot ip address")
-	#parser.add_argument("--port", type=int, default=9559, help="Robot port number")
 	args = parser.parse_args()
 	bpm, intensity, beats, duration, danceab = beatDetection(args.song)
-
 	doDance(bpm, intensity, duration,beats, args.song)
