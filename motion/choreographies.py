@@ -122,12 +122,12 @@ def high_bpm_relax(motionProxy, bpm, intensity, start, duration, beats, posture)
     # kf.nod(motionProxy, current_beat_duration, current_beat_duration * 2, 5)
 
     # stand + dab
-    posture.goToPosture("StandInit", current_beat_duration * 2)
+    posture.goToPosture("StandInit", 1.0)
     current_beat_duration = wait_for_sync(start, duration, beats)
     kf.nod(motionProxy, current_beat_duration, current_beat_duration * 2, 5)
-    kf.dab(motionProxy, current_beat_duration * 2, current_beat_duration * 2)
+    #kf.dab(motionProxy, current_beat_duration , current_beat_duration * 2)
     #standInit + dance1 + arm_leg_both
-    posture.goToPosture("StandInit", current_beat_duration*2)
+    posture.goToPosture("StandInit", 1.0)
     current_beat_duration = wait_for_sync(start, duration, beats)
     kf.dance1(motionProxy, current_beat_duration, current_beat_duration)
     current_beat_duration = wait_for_sync(start, duration, beats)
