@@ -128,12 +128,12 @@
 % *** GRAPHICS RELATED PACKAGES ***
 %
 \ifCLASSINFOpdf
-  % \usepackage[pdftex]{graphicx}
+  \usepackage[pdftex]{graphicx}
   % declare the path(s) where your graphic files are
-  % \graphicspath{{../pdf/}{../jpeg/}}
+  \graphicspath{ {./images/}}
   % and their extensions so you won't have to specify these with
   % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+  \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
 \else
   % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
   % will default to the driver specified in the system graphics.cfg if no
@@ -384,8 +384,8 @@
 % was not built to handle multiple paragraphs
 %
 
-\author{Milan~Pogadl,~\IEEEmembership{},
-        Marius~Kaiser,~\IEEEmembership{},
+\author{Milan~Pogadl,~\IEEEmembership{232964},
+        Marius~Kaiser,~\IEEEmembership{337180},
         Khaliun~Jargal,~\IEEEmembership{},
         and~Anderson~Machado,~\IEEEmembership{}% <-this % stops a space
 \thanks{}% <-this % stops a space
@@ -462,7 +462,7 @@ How to analyse music to make a robot dance to it.
 \IEEEpeerreviewmaketitle
 
 
-
+\includegraphics{robot.jpg}
 \section{Introduction}
 % The very first letter is a 2 line initial drop letter followed
 % by the rest of the first word in caps.
@@ -479,32 +479,43 @@ How to analyse music to make a robot dance to it.
 % 
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\IEEEPARstart{T}{he} goal of this project was to make a robot to anything the algrithm can identify as music. We used Essentia for Music Information Retrieval and a predefined set of dancing moves.
+
+
+
+\IEEEPARstart{T}{he} goal of this project was to make a robot dance to any kind of music the algorithm can identify as music. We used Essentia for Music Information Retrieval and a predefined set of dancing moves.
 % You must have at least 2 lines in the paragraph with the drop letter
 % (should never be an issue)
  
 \hfill September 10, 2019
 
 \subsection{Essentia}
-Finding the right music analysis framework was a bit difficult, because there a lot of frameworks for this in Python. But we found a research paper\cite{TOOLBOXES} that compared the many different music analysis libraries and Essentia was the best library with Python bindings. Essentia is used in many diffenrent applications like: freesound.org, KORG, Fretello and Crypt of the NecroDancer \cite{Feature}. \newline
-To use Essentia you have to load the music with one of the different loaders and then you can apply one of the many algorithms of the library on it \cite{RETRIEVAL}. \newline
-We used RhythmExtractor2013 for the Beat Detection, Intensity to get the mood of the music and Danceability to decide if the given sound file represents music.
+Finding the right music analysis framework was a bit difficult, because there are lot of frameworks for this in Python. But we found a research paper\cite{TOOLBOXES} that compared the many different music analysis libraries and Essentia was the best library with Python bindings. Essentia is used in many diffenrent applications like: freesound.org, KORG, Fretello and Crypt of the NecroDancer \cite{Feature}. \newline
+To use Essentia you have to load the music with one of the different loaders and then you can apply one of the many algorithms of the library on to it \cite{RETRIEVAL}. \newline
+We used RhythmExtractor2013 for the Beat Detection, Intensity to get the mood of the music. We tried to use Danceability to decide if the given sound file represents music, but this algorithm has some problems with noise and in some cases speech was as danceable as certain songs. On the other hand a metronom song had a nearly perfect danceability.
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
 
 \subsection{Key Frames}
-The NAOqi library ALMotion provides methods which allow complex movements of the NAO. It contains commands allowing to manipulate joint stiffness, joint angles, and a higher level API allowing us to control the moves. \newline The following methods are important for the implementation of our movements angleInterpolation(names, angleLists, timeLists, isAbsolute) and getAngles(names, useSensors).\newline
-For basic postures, we implemented it using API from NAOqi. Next, angles of Nao joints are gained through getAngles function to create particular movement. \newline
-Creating working key frames for the dance moves of the robot proved to be more difficult, than we expected. Therefore, a complex choreography for the Nao has been built in this project using the timeline functions of the Choregraphe software. Choregraphe is a multi-platform desktop application which allows us to create our dance, test them at home and monitor Nao through programming. Every move had to be tested directly with the robot to check its stability so that the robot would not fall down while dancing. We had to optimize every move for a variable speed derived from the beats per minute of the music.
+The NAOqi library ALMotion provides methods which allow complex movements of the NAO. It contains commands allowing to manipulate joint stiffness, joint angles, and a higher level API allowing us to control the moves. \newline 
+The following methods are important for the implementation of our movements angleInterpolation(names, angleLists, timeLists, isAbsolute) and getAngles(names, useSensors).\newline
+For basic postures, we implemented it using the API from NAOqi. Next, angles of Nao joints are gained through getAngles function to create a particular movement. \newline
+Creating working key frames for the dance moves of the robot proved to be more difficult, than we expected. 
+Therefore a complex choreography for the Nao has been built in this project using the timeline functions of the Choregraphe software. 
+Choregraphe is a multi-platform desktop application which allows us to create our dance and test it at home with a virtual nao robot.
+Every move had to be tested directly with the robot to check its stability, so that the robot would not fall down while dancing. We had to optimize every move for a variable speed derived from the beats per minute of the music.
 
 % key frame recording
 % time interpolation
 % angle interpolation
 
 \subsection{Dance Generation}
-First the sound file is loaded with an Essentia loader. Then we analyze the Track with the RhythmExtractor2013, Intensity and Danceability algorithms. We use the outcome of the Danceability algorithm to decide if the sound file represents danceable music. The result of the Intensity algorithm determines if the use of relaxed or more aggresive dancing movements. Then combined this moves get combined to form a choreography. The speed of the movements is adapted to the beats per minute of the song determined by RhythmExtractor2013 algorithm. RhythmExtractor2013 gives us also the position of each beat so that we can time some moves to a beat position.
-Then the music starts and the robot gets it movement commands to dance to the music.
+First the sound file is loaded with an Essentia loader. Then we analyze the Track with the RhythmExtractor2013, Intensity and Danceability algorithms. 
+The result of the Intensity algorithm determines could be used to decide  between relaxed or more aggresive dancing movements, but we didn't finish enough different dance moves in the end to use it.
+Then we decide which predefined set of dance moves is used. Some dance moves had to be combined with a stand move to properly initialize them. 
+Now the music starts and the robot begins to dance to the chosen music file. 
+The speed of the dance movements is adapted to the current beat duration of the song determined by RhythmExtractor2013 algorithm. RhythmExtractor2013 gives us also the position of each beat so that we can syncronize each dance move to the next beat position. 
+The Nao v6 proved to be superior to former models for dancing.
 
 
 % An example of a floating figure using the graphicx package.
@@ -593,7 +604,8 @@ Then the music starts and the robot gets it movement commands to dance to the mu
 
 
 \section{Conclusion}
-At the beginning of our project, we wanted to make sure that the robot could do a real-time beat analysis, but we had problems, whereas we could not access the recorded file from Nao and do the real-time analysis in the computer, and since the Nao CPU as also the Computer CPU were not so fast, we would have a even larger delay with the command and action. Because of that, we choose to do only a beat analysis with the Computer and tried to close this gap with algorithms from Essentia like danceability and intensity.  Nevertheless still faced problems with delay and network connections and the algorithms weren't accurate. It might be even possible with a faster Nao CPU and Hardware to do the music analysis in real time.
+At the beginning of our project, we wanted to do the music analysis in real-time but latency and slow reaction to tempo changes made this difficult. \newline
+The project could be further expanded with an ability to read new dance moves from .json files. This dance moves could be anotated with the genre, mood, intsity and beats per minute ranges for which they are designed. But designing such dance moves would of course take some time. With enough dance moves the robot could react to different genres of music through musical genre classification\cite{genre} and adjust his dance moves to the genre. The robots lights could be used for the expression of different moods. With that the robot could be used in disco as an obvious application of our program.
 
 
 
@@ -616,12 +628,7 @@ At the beginning of our project, we wanted to make sure that the robot could do 
 
 \appendices
 \section{Beat Detection}
-For the project we created three main codes(naorecord.py, keyframes.py and choreographies.py). \newline
-With naorecord.py we made three functions: \newline
-beatDetection wich is used for the beats, bpm and duration analysis of a music file is only possible with Essentia. With those analysis, we can determinate wich moves the robot will make and with wich tempo. \newline
-musicPlayer function as the name says, is for the music, with the help of pydub library we can reproduce a music file and with this we can call the movements of the robot. \newline
-doDance function will use the analysis from beatDetection to determinate if the robot will dance or not and for how long will he dance. \newline
-\newline
+
 % you can choose not to have a title for an appendix
 % if you want by leaving the argument blank
 
@@ -630,7 +637,7 @@ doDance function will use the analysis from beatDetection to determinate if the 
 \section*{Acknowledgment}
 
 
-The authors would like to thank the Universitat Pompeu Fabra for developing Essentia and making available for the publie as an opensource library.
+The authors would like to thank the Universitat Pompeu Fabra for developing Essentia and making it available to the public as an opensource library.
 
 
 % Can use something like this to put references on a page
@@ -687,6 +694,11 @@ Universitat Pompeu Fabra, Barcelona, Spain, 2019.
 Akshay Paranjape, \newline 
 \emph{Tools for Feature Extraction - exploring and using essentia library}, \newline
 \relax 2017.
+
+\bibitem{genre}
+Boix Luna, Pau, \newline 
+\emph{Automatic Movie Genre Classification Based On Musical Descriptors}, \newline
+\relax Universitat Pompeu Fabra, Barcelona, Spain, 2014.
 
 
 \end{thebibliography}
