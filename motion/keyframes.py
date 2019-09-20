@@ -376,24 +376,6 @@ def dance5(motionProxy, timestep=0, time_start=1):
 
 
 def dance6(motionProxy, timestep=0, time_start=1):
-    # Arms left to right with leg and dance1 , dance 4
-    nod(motionProxy)
-    time.sleep(0.5)
-    names_rechte = ["RHipRoll", "LHipRoll", "LKneePitch", "LAnklePitch", "LHipPitch"]
-    angleList1 = [[0.2], [0.2], [1], [-0.5], [-0.5]]
-    angleList2 = [[0.0], [0.0], [0.0], [0.0], [0.0]]
-    isAbsolute = True
-
-    names_linke = ["LHipRoll", "RHipRoll", "RKneePitch", "RAnklePitch", "RHipPitch"]
-    times = [[0.6]] * 5
-    angleList_left1 = [[-0.2], [-0.2], [1], [-0.5], [-0.5]]
-    angleList_left2 = [[0.0], [0.0], [0.0], [0.0], [0.0]]
-
-    for i in range(3):
-        motionProxy.post.angleInterpolation(names_linke, angleList_left1, times, isAbsolute)
-        motionProxy.post.angleInterpolation(names_linke, angleList_left2, times, isAbsolute)
-        motionProxy.post.angleInterpolation(names_rechte, angleList1, times, isAbsolute)
-        motionProxy.post.angleInterpolation(names_rechte, angleList2, times, isAbsolute)
 
     names = list()
     keys = list()
@@ -478,10 +460,6 @@ def dance6(motionProxy, timestep=0, time_start=1):
         times = set_times(names, keys, timestep, time_start)
 
     motionProxy.angleInterpolation(names, keys, times, True)
-    # return names, times, keys
-    # dance4(motionProxy, 0.6)
-    # time.sleep(0.3)
-    # dance1(motionProxy)
 
 
 def dance7(motionProxy, timestep=0, time_start=1):
@@ -677,10 +655,8 @@ def dab(motionProxy, timestep=0, time_start=1):
     keys = list()
 
     names.append("HeadPitch")
-    # keys.append([-0.168314, 0, 0.296706, 0, -0.168314, 0.296706, -0.168314])
     keys.append([-0.164831, -0.0119224, 0.296621, 0.00652459, -0.161134, 0.0614308, 0.292858, 0.0662124, -0.16486])
     names.append("HeadYaw")
-    # keys.append([-5.82076e-11, 0.79587, 0.801106, 0.79587, -5.82076e-11, -0.799361, -5.82076e-11])
     keys.append([0.00829263, 0.790634, 0.800656, 0.800656, 0.00126466, -0.531571, -0.794873, -0.404192, -0.00595358])
     names.append("LElbowRoll")
     keys.append([-0.420029, -0.837758, -1.11527, -0.836013, -0.420029, -0.219911, -0.20944, -0.219911, -0.420029])
@@ -701,8 +677,6 @@ def dab(motionProxy, timestep=0, time_start=1):
 
     if timestep == 0:
         times = list()
-        # times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.56, 4.32]) # HeadPitch
-        # times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.56, 4.32]) # HeadYaw
         times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32])  # HeadPitch
         times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32])  # HeadYaw
         times.append([0.96, 1.56, 1.96, 2.36, 2.72, 3.16, 3.56, 3.96, 4.32])  # LElbowRoll
