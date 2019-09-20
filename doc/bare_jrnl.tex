@@ -15,8 +15,6 @@
 %% and
 %% http://www.ieee.org/
 
-
-
 % *** Authors should verify (and, if needed, correct) their LaTeX system  ***
 % *** with the testflow diagnostic prior to trusting their LaTeX platform ***
 % *** with production work. IEEE's font choices can trigger bugs that do  ***
@@ -365,9 +363,10 @@
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
-
-
+\usepackage{hyperref}
+\usepackage{listings}
 \begin{document}
+
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
@@ -386,8 +385,8 @@
 
 \author{Milan~Pogadl,~\IEEEmembership{232964},
         Marius~Kaiser,~\IEEEmembership{337180},
-        Khaliun~Jargal,~\IEEEmembership{},
-        and~Anderson~Machado,~\IEEEmembership{}% <-this % stops a space
+        Khaliun~Jargal,~\IEEEmembership{205745},
+        and~Anderson~Machado,~\IEEEmembership{397026}% <-this % stops a space
 \thanks{}% <-this % stops a space
 \thanks{}% <-this % stops a space
 \thanks{}}
@@ -442,7 +441,6 @@
 
 % make the title area
 \maketitle
-
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
@@ -462,7 +460,7 @@ How to analyse music to make a robot dance to it.
 \IEEEpeerreviewmaketitle
 
 
-\includegraphics{robot.jpg}
+
 \section{Introduction}
 % The very first letter is a 2 line initial drop letter followed
 % by the rest of the first word in caps.
@@ -495,7 +493,6 @@ We used RhythmExtractor2013 for the Beat Detection, Intensity to get the mood of
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
-
 \subsection{Key Frames}
 The NAOqi library ALMotion provides methods which allow complex movements of the NAO. It contains commands allowing to manipulate joint stiffness, joint angles, and a higher level API allowing us to control the moves. \newline 
 The following methods are important for the implementation of our movements angleInterpolation(names, angleLists, timeLists, isAbsolute) and getAngles(names, useSensors).\newline
@@ -508,14 +505,31 @@ Every move had to be tested directly with the robot to check its stability, so t
 % key frame recording
 % time interpolation
 % angle interpolation
-
 \subsection{Dance Generation}
+\includegraphics[scale=0.5]{fluss_diagramm.jpg}
 First the sound file is loaded with an Essentia loader. Then we analyze the Track with the RhythmExtractor2013, Intensity and Danceability algorithms. 
 The result of the Intensity algorithm determines could be used to decide  between relaxed or more aggresive dancing movements, but we didn't finish enough different dance moves in the end to use it.
 Then we decide which predefined set of dance moves is used. Some dance moves had to be combined with a stand move to properly initialize them. 
 Now the music starts and the robot begins to dance to the chosen music file. 
 The speed of the dance movements is adapted to the current beat duration of the song determined by RhythmExtractor2013 algorithm. RhythmExtractor2013 gives us also the position of each beat so that we can syncronize each dance move to the next beat position. 
 The Nao v6 proved to be superior to former models for dancing.
+
+\newpage
+
+\subsection{Project Setup}
+\href{https://github.com/Schwoisser/RobocupProject}{Github Repository of the project} \newline
+Make sure you are using Python 2.X, because the Nao Framework is based on it. \newline
+Install Essentia and pydub: \newline
+\begin{lstlisting}[language=bash]
+pip install essentia
+pip install pydub
+\end{lstlisting}
+This works under Linux but under Windows you have to compile Essentia manualy. Make sure to disable autonomous life of the nao, otherwise the robot will fall down. \newline
+Then run in the motion dir of the repository: \newline
+\begin{lstlisting}[language=bash]
+python naorecord.py --song /path/to/song/
+\end{lstlisting}
+
 
 
 % An example of a floating figure using the graphicx package.
@@ -626,9 +640,6 @@ The project could be further expanded with an ability to read new dance moves fr
 %
 
 
-\appendices
-\section{Beat Detection}
-
 % you can choose not to have a title for an appendix
 % if you want by leaving the argument blank
 
@@ -637,7 +648,7 @@ The project could be further expanded with an ability to read new dance moves fr
 \section*{Acknowledgment}
 
 
-The authors would like to thank the Universitat Pompeu Fabra for developing Essentia and making it available to the public as an opensource library.
+The authors would like to thank the Universitat Pompeu Fabra for developing Essentia and making it available to the public as an open source library.
 
 
 % Can use something like this to put references on a page
@@ -670,6 +681,7 @@ The authors would like to thank the Universitat Pompeu Fabra for developing Esse
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
+\newpage
 \begin{thebibliography}{4}
 
 \bibitem{TOOLBOXES}
