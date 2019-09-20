@@ -593,7 +593,7 @@ Then the music starts and the robot gets it movement commands to dance to the mu
 
 
 \section{Conclusion}
-It might be even possible with a faster Nao CPU to do the music analysis in real time.
+At the beginning of our project, we wanted to make sure that the robot could do a real-time beat analysis, but we had problems, whereas we could not access the recorded file from Nao and do the real-time analysis in the computer, and since the Nao CPU as also the Computer CPU were not so fast, we would have a even larger delay with the command and action. Because of that, we choose to do only a beat analysis with the Computer and tried to close this gap with algorithms from Essentia like danceability and intensity.  Nevertheless still faced problems with delay and network connections and the algorithms weren't accurate. It might be even possible with a faster Nao CPU and Hardware to do the music analysis in real time.
 
 
 
@@ -616,8 +616,12 @@ It might be even possible with a faster Nao CPU to do the music analysis in real
 
 \appendices
 \section{Beat Detection}
-Appendix one text goes here.
-
+For the project we created three main codes(naorecord.py, keyframes.py and choreographies.py). \newline
+With naorecord.py we made three functions: \newline
+beatDetection wich is used for the beats, bpm and duration analysis of a music file is only possible with Essentia. With those analysis, we can determinate wich moves the robot will make and with wich tempo. \newline
+musicPlayer function as the name says, is for the music, with the help of pydub library we can reproduce a music file and with this we can call the movements of the robot. \newline
+doDance function will use the analysis from beatDetection to determinate if the robot will dance or not and for how long will he dance. \newline
+\newline
 % you can choose not to have a title for an appendix
 % if you want by leaving the argument blank
 
