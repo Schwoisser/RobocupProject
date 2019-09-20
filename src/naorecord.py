@@ -43,13 +43,9 @@ def musicPlayer(song="song"):
 
 
 	
-def doDance(bpm, intensity, duration, beats, song):
-    #do a move at the next beat, if we have enough beat info
-	robotIP = "localhost"  # "nao34.local" # 10.0.7.106
-	robotIP = "nao34.local"
-	robotIP = "10.0.7.100"
-	# port = 42865 
-	port =9559
+def doDance(bpm, intensity, duration, beats, song, ip, port):
+	robotIP = ip
+	port = port
 	motionProxy = ALProxy("ALMotion", robotIP, port)
 	posture = ALProxy("ALRobotPosture", robotIP, port)
 	ttsProxy = ALProxy("ALTextToSpeech", robotIP, port)
@@ -73,6 +69,9 @@ def doDance(bpm, intensity, duration, beats, song):
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 	parser.add_argument("--song", type=str, help="Patho to Song")
+	parser.add_argument("--ip", type=str, help="Robot IP")
+	parser.add_argument("--port", type=str, help="Robot Port")
 	args = parser.parse_args()
 	bpm, intensity, beats, duration, danceab = beatDetection(args.song)
-	doDance(bpm, intensity, duration,beats, args.song)
+
+	doDance(bpm, intensity, duration,beats, args.song, args.ip, args.port)

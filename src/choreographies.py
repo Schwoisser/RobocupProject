@@ -1,3 +1,4 @@
+
 import keyframes as kf
 import time as time
 
@@ -6,7 +7,6 @@ def wait_for_sync(start, duration, beats):
     now = time.time()
     time_past = now - start
     for i in range(len(beats)):
-        # print("beat " + str(i) + " " + str(beats[i]))
         if (i == 0):
             if (time_past < beats[0]):
                 wait_time = beats[0] - time_past
@@ -19,40 +19,8 @@ def wait_for_sync(start, duration, beats):
     return 0.0
 
 
-#
-#
-# macarena
-# dance7
-# nod
-
-# low bpm
-# dance5 intensity maybe > -1
-# macarena
-# stand + dance7
-# stand + dab
-# posture.goToPosture("Stand", 1.0)
-
-# med bpm
-# dance4
-# stand + dance7
-# stand + dab
-
-# high bpm
-# dance4
-# nod
-# stand + dab
-
-# Test
-# arm_yeahboth
-# arm_yeah
-# arm_snap
-# arm_walk
-# arm_leg_both
-# dab
-# up_and_down
-
 def low_bpm_relax(motionProxy, bpm, intensity, start, duration, beats, posture):
-    # print("low bpm")
+	# dance 5
     current_beat_duration = wait_for_sync(start, duration, beats)
     kf.dance5(motionProxy, current_beat_duration * 2, current_beat_duration * 2)
     # macarena
@@ -78,12 +46,6 @@ def low_bpm_neutral(motionProxy, bpm, intensity, start, duration, beats, posture
 def low_bpm_aggressive(motionProxy, bpm, intensity, start, duration, beats, posture):
     low_bpm_relax(motionProxy, bpm, intensity, start, duration, beats, posture)
 
-
-# med bpm
-# dance4
-# stand + dance7
-# stand + dab
-
 def medium_bpm_relax(motionProxy, bpm, intensity, start, duration, beats, posture):
     # dance 4
     current_beat_duration = wait_for_sync(start, duration, beats)
@@ -107,19 +69,11 @@ def medium_bpm_aggressive(motionProxy, bpm, intensity, start, duration, beats, p
     medium_bpm_relax(motionProxy, bpm, intensity, start, duration, beats, posture)
 
 
-# high bpm
-# dance4
-# nod
-# stand + dab
-
 def high_bpm_relax(motionProxy, bpm, intensity, start, duration, beats, posture):
-    # dance 4
-    current_beat_duration = wait_for_sync(start, duration, beats)
-    # kf.dance4(motionProxy, current_beat_duration * 2, current_beat_duration * 2)
     # nod
-    # posture.goToPosture("Stand", current_beat_duration * 2)
-    # current_beat_duration = wait_for_sync(start, duration, beats)
-    # kf.nod(motionProxy, current_beat_duration, current_beat_duration * 2, 5)
+    posture.goToPosture("Stand", 1)
+    current_beat_duration = wait_for_sync(start, duration, beats)
+    kf.nod(motionProxy, current_beat_duration, current_beat_duration * 2, 5)
 
     # stand + dab
     posture.goToPosture("StandInit", 1.0)
