@@ -6,8 +6,8 @@ import motion
 import time
 import keyframes as kf
 
-robotIP = "nao34.local"
-port = 9559
+robotIP = "localhost"
+port = 39265
 motionProxy = ALProxy("ALMotion", robotIP, port)
 posture = ALProxy("ALRobotPosture", robotIP, port)
 ttsProxy = ALProxy("ALTextToSpeech", robotIP, port)
@@ -23,7 +23,7 @@ ttsProxy.say("Go!")
 posture.goToPosture("Stand", 1.0)
 time.sleep((2))
 # kf.dance3(motionProxy) # begin with Stand
-# kf.dance1(motionProxy) # bein with Stand and endposition ist stand
+kf.dance1(motionProxy, 0.5, 0.5) # bein with Stand and endposition ist stand
 # kf.macarena(motionProxy)
 # kf.up_and_down(motionProxy)
 kf.dance5(motionProxy, 0.8) # endposition and beginposition ist Stand
