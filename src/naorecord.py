@@ -68,7 +68,7 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 	parser.add_argument("--song", type=str, help="Patho to Song")
 	parser.add_argument("--ip", type=str, help="Robot IP")
-	parser.add_argument("--port", type=str, help="Robot Port")
+	parser.add_argument("--port", type=int, help="Robot Port")
 	args = parser.parse_args()
 	bpm, intensity, beats, duration, danceab = beatDetection(args.song)
 
