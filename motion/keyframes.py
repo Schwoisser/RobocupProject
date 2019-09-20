@@ -72,157 +72,38 @@ def macarena(motionProxy, timestep_length=0.538, time_start=1):
     motionProxy.angleInterpolation("LArm", angleList3_left, timestep, isAbsolute)
 
 
-def up_and_down_1(motionProxy):
-    names = list()
-    times = list()
-    keys = list()
+def dance1(motionProxy, timestep, time_start):  # choreo 1
 
-    names.append("HeadPitch")
-    times.append([0.76, 1.96, 3.16, 4.36])
-    keys.append([-0.0106666, -0.0141376, -0.0141376, -0.0141376])
-
-    names.append("HeadYaw")
-    times.append([0.76, 1.96, 3.16, 4.36])
-    keys.append([-0.674338, 0.638078, -0.683508, 0.638078])
-
-    names.append("LAnklePitch")
-    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
-    keys.append([0.0828387, -0.498408, 0.0836714, -0.5079, 0.0836714, -0.498408, 0.0836714, -0.5079, 0.0836714])
-
-    names.append("LAnkleRoll")
-    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
-    keys.append([-0.103341, -0.102974, -0.103341, -0.101229, -0.103341, -0.102378, -0.103341, -0.102378, -0.103341])
-
-    names.append("LElbowRoll")
-    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
-    keys.append([-0.41295, -0.420158, -0.41295, -0.41295, -0.417546, -0.41295, -0.41295])
-
-    names.append("LElbowYaw")
-    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
-    keys.append([-1.21064, -1.22097, -1.20062, -1.20062, -1.21724, -1.20062, -1.20062])
-
-    names.append("LHand")
-    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
-    keys.append([0.292284, 0.3, 0.292284, 0.292284, 0.3, 0.292284, 0.292284])
-
-    names.append("LHipPitch")
-    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
-    keys.append([0.122436, -0.596903, 0.123575, -0.612611, 0.123575, -0.610563, 0.123575, -0.606502, 0.123575])
-
-    names.append("LHipRoll")
-    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
-    keys.append([0.121781, 0.122173, 0.121781, 0.122173, 0.121781, 0.114832, 0.121781, 0.114832, 0.121781])
-
-    names.append("LHipYawPitch")
-    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
-    keys.append([-0.174015, 0.0872665, -0.174015, 0.0785398, -0.174015, 0.0802851, -0.174015, 0.0872665, -0.174015])
-
-    names.append("LKneePitch")
-    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
-    keys.append([-0.0829613, 1.02451, -0.0851616, 1.02974, -0.0851616, 1.03448, -0.0851616, 1.03673, -0.0851616])
-
-    names.append("LShoulderPitch")
-    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
-    keys.append([1.42708, 1.38749, 1.44722, 1.44722, 1.40547, 1.44722, 1.44722])
-
-    names.append("LShoulderRoll")
-    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
-    keys.append([0.257591, 0.338173, 0.227903, 0.227903, 0.320011, 0.227903, 0.227903])
-
-    names.append("LWristYaw")
-    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
-    keys.append([-0.109248, -0.0966509, -0.109248, -0.109248, -0.106531, -0.109248, -0.109248])
-
-    names.append("RAnklePitch")
-    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
-    keys.append([0.0828387, -0.488692, 0.0836714, -0.502655, 0.0836714, -0.488692, 0.0836714, -0.504072, 0.0836714])
-
-    names.append("RAnkleRoll")
-    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
-    keys.append([0.103341, 0.102974, 0.103341, 0.10472, 0.103341, 0.102974, 0.103341, 0.0996395, 0.103341])
-
-    names.append("RElbowRoll")
-    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
-    keys.append([0.41295, 0.415691, 0.41295, 0.41295, 0.41295, 0.41295, 0.41295])
-
-    names.append("RElbowYaw")
-    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
-    keys.append([1.21064, 1.21447, 1.20062, 1.20062, 1.21064, 1.20062, 1.20062])
-
-    names.append("RHand")
-    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
-    keys.append([0.292284, 0.292284, 0.292284, 0.292284, 0.292284, 0.292284, 0.292284])
-
-    names.append("RHipPitch")
-    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
-    keys.append([0.122436, -0.596903, 0.123575, -0.610865, 0.123575, -0.607375, 0.123575, -0.606502, 0.123575])
-
-    names.append("RHipRoll")
-    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
-    keys.append([-0.121781, -0.122173, -0.121781, -0.120428, -0.121781, -0.122173, -0.121781, -0.117404, -0.121781])
-
-    names.append("RHipYawPitch")
-    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
-    keys.append([-0.174015, 0.0872665, -0.174015, 0.0785398, -0.174015, 0.0802851, -0.174015, 0.0872665, -0.174015])
-
-    names.append("RKneePitch")
-    times.append([0.16, 0.76, 1.36, 1.96, 2.56, 3.16, 3.76, 4.36, 4.96])
-    keys.append([-0.0829613, 1.02451, -0.0851616, 1.03498, -0.0851616, 1.02451, -0.0851616, 1.03673, -0.0851616])
-
-    names.append("RShoulderPitch")
-    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
-    keys.append([1.42708, 1.3873, 1.44722, 1.44722, 1.40547, 1.44722, 1.44722])
-
-    names.append("RShoulderRoll")
-    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
-    keys.append([-0.257591, -0.338594, -0.227903, -0.227903, -0.320011, -0.227903, -0.227903])
-
-    names.append("RWristYaw")
-    times.append([0.16, 0.76, 1.36, 2.56, 3.16, 3.76, 4.96])
-    keys.append([0.109248, 0.109171, 0.109248, 0.109248, 0.109248, 0.109248, 0.109248])
-
-    motionProxy.angleInterpolation(names, keys, times, True)
-    # return names, times, keys
-
-
-def dance1(motionProxy):  # choreo 1
-    effector_names = ["HeadYaw", "HeadPitch"]
-    times = [[0.6], [0.6]]
-
-    for i in range(4):
-        motionProxy.post.angleInterpolation(effector_names, [0.0, 0.5], times, True)
-        motionProxy.post.angleInterpolation(effector_names, [0.0, -0.5], times, True)
-
-    effector = ["RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll", "RHand"]
+    names = ["RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll", "RHand"]
     angleList1 = [1.385, -0.274, -1.222, 0, 0.292284]
     times = 0.8
-    motionProxy.angleInterpolation(effector, angleList1, times, True)
+    motionProxy.angleInterpolation(names, angleList1, times, True)
 
-    effector = ["LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll", "LHand"]
+    names = ["LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll", "LHand"]
     angleList1 = [1.385, 0.274, 1.222, 0, 0.292284]
-    motionProxy.angleInterpolation(effector, angleList1, times, True)
+    motionProxy.angleInterpolation(names, angleList1, times, True)
 
-    effector = ["RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll", "RHand"]
+    names = ["RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll", "RHand"]
     angleList2 = [1.489, -1.222, 0, 1.342, 0.292284]
-    motionProxy.angleInterpolation(effector, angleList2, times, True)
+    motionProxy.angleInterpolation(names, angleList2, times, True)
 
-    effector = ["LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll", "LHand"]
+    names = ["LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll", "LHand"]
     angleList2 = [1.489, 1.222, 0, -1.342, 0.292284]
-    motionProxy.angleInterpolation(effector, angleList2, times, True)
+    motionProxy.angleInterpolation(names, angleList2, times, True)
 
-    effector = ["RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll", "RHand"]
-    times = [[0.6, 1.2]] * 5
-    angleList1 = [[1.489, 1.489], [-1.222, -1.222], [0, 0], [0, 1.342], [0.292284, 0.292284]]
+    # both Arms
+    names_r = ["RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll", "RHand"]
+    names_l = ["LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll"]
+    names = names_r + names_l
 
-    for i in range(3):
-        motionProxy.post.angleInterpolation(effector, angleList1, times, True)
 
-    effector = ["LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll"]
-    times = [[0.6, 1.2]] * 5
-    angleList1 = [[1.489, 1.489], [1.222, 1.222], [0, 0], [0, -1.342]]
-
-    for i in range(3):
-        motionProxy.angleInterpolation(effector, angleList1, times, True)
+    #times = [[0.6, 1.2]] * 5
+    key_r = [[1.489, 1.489], [-1.222, -1.222], [0, 0], [0, 1.342], [0.292284, 0.292284]]
+    key_l = [[1.489, 1.489], [1.222, 1.222], [0, 0], [0, -1.342]]
+    keys = key_r + key_l
+    times = set_times(names, keys, timestep, time_start)
+    for i in range(4):
+        motionProxy.angleInterpolation(names, keys, times, True)
 
 
 def dance3(motionProxy, timestep=0, time_start=1):
