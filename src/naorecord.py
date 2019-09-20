@@ -44,11 +44,9 @@ def musicPlayer(song="song"):
 
 	
 def doDance(bpm, intensity, duration, beats, song, ip, port):
-	robotIP = ip
-	port = port
-	motionProxy = ALProxy("ALMotion", robotIP, port)
-	posture = ALProxy("ALRobotPosture", robotIP, port)
-	ttsProxy = ALProxy("ALTextToSpeech", robotIP, port)
+	motionProxy = ALProxy("ALMotion", ip, port)
+	posture = ALProxy("ALRobotPosture", ip, port)
+	ttsProxy = ALProxy("ALTextToSpeech", ip, port)
 	start = time.time()
 	posture.goToPosture("Stand", 1.0)
 	#posture.goToPosture("StandInit",1.0)
